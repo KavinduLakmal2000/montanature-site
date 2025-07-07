@@ -1,0 +1,63 @@
+  :root {
+      --background-color: #ffffff;
+      /* white background */
+      --default-color: #212529;
+      /* standard Bootstrap text */
+      --heading-color: #000000;
+      /* black headings */
+      --accent-color: #22df11;
+      /* Bootstrap green or your brand color */
+      --surface-color: #f8f9fa;
+      /* card backgrounds */
+      --contrast-color: #000000;
+      /* contrast text (e.g., buttons on light background) */
+
+      /* Optional for nav customization */
+      --nav-color: #212529;
+      --nav-hover-color: #1a7e11;
+      --nav-mobile-background-color: #ffffff;
+      --nav-dropdown-background-color: #ffffff;
+      --nav-dropdown-color: #212529;
+      --nav-dropdown-hover-color: #198754;
+  }
+
+  .lift-on-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .lift-on-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-action {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color, #008374);
+      color: #fff;
+      font-size: 18px;
+      transition: background 0.3s ease;
+  }
+
+  .card-action:hover {
+      background: #f77200;
+      color: #fff;
+  }
+
+  #manage {
+      background-color: #fff !important;
+  }
+
+  #manage .team-member {
+      background-color: #fff !important;
+      color: #000 !important;
+  }
+
+  .hero .fluid-shape img[src*="hero7.png"] {
+      width: 120%;
+      max-width: none;
+      height: auto;
+      transform: scale(1.1);
+      object-fit: contain;
+  }
+
