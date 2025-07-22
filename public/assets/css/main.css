@@ -52,6 +52,8 @@
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
+
+
 body {
   color: var(--default-color);
   background-color: var(--background-color);
@@ -457,6 +459,7 @@ h6 {
   font-size: 14px;
   padding-bottom: 50px;
   position: relative;
+   z-index: 1;
 }
 
 .footer .footer-top {

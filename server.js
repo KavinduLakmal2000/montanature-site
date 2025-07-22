@@ -5,6 +5,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const Footer = require('./models/Footer');
+const ActivityCard = require('./models/activity_cards');
 
 const app = express();
 const PORT = 3000;
@@ -96,7 +97,7 @@ app.post('/api/save-footer', async (req, res) => {
 
     // Save or update the footer data (you can do upsert for one-document-only collection)
     const updated = await Footer.findOneAndUpdate({}, footerData, { upsert: true, new: true });
-    
+
     res.status(200).json({ message: 'Footer data saved successfully', data: updated });
   } catch (err) {
     console.error('Error saving footer:', err);
@@ -116,6 +117,57 @@ app.get('/api/get-footer', async (req, res) => {
   }
 });
 
+// ---------------------------------------------------------------- activity section -------------------------------------------------------------------------
+
+app.post('/api/cards', async (req, res) => {
+  try {
+    const newCard = new ActivityCard(req.body);
+    const savedCard = await newCard.save();
+    res.status(201).json({ success: true, card: savedCard });
+  } catch (err) {
+    console.error('Error saving card:', err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+
+app.get('/api/cards', async (req, res) => {
+  try {
+    const cards = await ActivityCard.find();
+    res.json(cards);
+  } catch (err) {
+    console.error('Error fetching activity cards:', err);
+    res.status(500).json({ error: 'Failed to load activity cards' });
+  }
+});
+
+// delete
+
+app.delete('/api/cards/:id', async (req, res) => {
+  try {
+    await ActivityCard.findByIdAndDelete(req.params.id);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error deleting card:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
+
+// edit
+
+app.put('/api/cards/:id', async (req, res) => {
+  try {
+    const updatedCard = await ActivityCard.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ success: true, card: updatedCard });
+  } catch (err) {
+    console.error("Error updating card:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
 
 
 

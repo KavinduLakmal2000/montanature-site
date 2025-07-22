@@ -1,0 +1,10 @@
+[
+  {
+    "id": "test-id",
+    "title": "Example Card",
+    "category": "workshop",
+    "image": "https://placehold.co/400x300",
+    "description": "Short description",
+    "lightbox": "https://placehold.co/800x600"
+  }
+]
