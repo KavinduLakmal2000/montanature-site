@@ -39,23 +39,23 @@
             <div
                 class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-                <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <a href="admin_home.html" class="logo d-flex align-items-center me-auto me-xl-0">
                     <img src="assets/img/leaf_Logo.png" alt="Logo MontaNature">
-                    <h1 class="sitename">MontaNature</h1>
+                    <h1 class="sitename">MontaNature administratrice</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="index.html" class="active">Accueil</a></li>
+                        <li><a href="admin_home.html" class="active">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
 
                         <li class="dropdown">
                             <a href="#services"><span>Services</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
-                                <li><a href="activitys.html">Activités d'animation</a></li>
-                                <li><a href="Nature_Management.html">Gestion de la nature</a></li>
-                                <li><a href="Labellisation.html">Service de labellisation</a></li>
+                                <li><a href="admin_activitiys.html">Activités d'animation</a></li>
+                                <li><a href="admin_nature.html">Gestion de la nature</a></li>
+                                <li><a href="admin_lebellisation.html">Service de labellisation</a></li>
                             </ul>
                         </li>
 
@@ -64,7 +64,7 @@
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="btn-getstarted" href="#about">Commencer</a>
+                <a class="btn-getstarted" href="index.html">se déconnecter</a>
 
             </div>
         </header>
@@ -103,7 +103,7 @@
                     <div class="col-lg-5" data-aos="zoom-out">
                         <div class="visual-content">
                             <div class="fluid-shape">
-                                <img src="assets/img/abstract/hero3.png" alt="Abstract Fluid Shape" class="fluid-img">
+                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape" class="fluid-img">
                             </div>
                         </div>
                     </div>
@@ -151,6 +151,7 @@
 
         <footer id="footer" class="footer">
 
+
             <div class="container footer-top">
                 <div class="row gy-4">
 
@@ -161,10 +162,10 @@
                         </a>
                         <p>Animation, Gestion de la nature & Labellisation pour un environnement durable.</p>
                         <div class="social-links d-flex mt-4">
-                            <a href="#"><i class="bi bi-twitter"></i></a>
-                            <a href="#"><i class="bi bi-facebook"></i></a>
-                            <a href="#"><i class="bi bi-instagram"></i></a>
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a id="footer-facebook" href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                            <a id="footer-instagram" href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a id="footer-linkedin" href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a id="footer-twitter" href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -179,9 +180,15 @@
 
                     <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact</h4>
-                        <p>A108 Adam Street, New York, NY 535022, USA</p>
-                        <p><strong>Téléphone:</strong> +1 5589 55488 55</p>
-                        <p><strong>Email:</strong> info@example.com</p>
+                        <p><span id="footer-address"></span></p>
+                        <p><strong>Téléphone:</strong> <span id="footer-telephone"></span></p>
+                        <p><strong>Email:</strong> <span id="footer-email"></span></p>
+                    </div>
+
+                    <div class="mt-3">
+                        <button class="btn btn-success rounded-pill" id="editFooterBtn">
+                            Modifier le pied de page
+                        </button>
                     </div>
 
                 </div>
@@ -306,6 +313,68 @@
             </div>
         </div>
 
+        <!-- ----------------------------------------------------------------------------------------footer update------------------------------------------------------------ -->
+
+        <div class="modal fade" id="footerEditModal" tabindex="-1" aria-labelledby="footerEditModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-primary text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="footerEditModalLabel">
+                            <i class="bi bi-pencil-square me-2"></i>Modifier les informations du pied de page
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="footerEditForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="address" class="form-label">Adresse</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="address"
+                                        name="address" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control rounded-pill shadow-sm" id="email"
+                                        name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telephone" class="form-label">Mobile</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="telephone"
+                                        name="telephone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="facebook" class="form-label">Facebook</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="facebook"
+                                        name="facebook">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="instagram" class="form-label">Instagram</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="instagram"
+                                        name="instagram">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="linkedin" class="form-label">LinkedIn</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="linkedin"
+                                        name="linkedin">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="twitter" class="form-label">Twitter</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="twitter"
+                                        name="twitter">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-save me-2"></i>Enregistrer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -319,6 +388,7 @@
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
         <script src="assets/js/activity_cards.js"></script>
+        <script src="assets/js/footerEdit.js"></script>
     </div>
 </body>
 

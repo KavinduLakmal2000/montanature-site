@@ -37,22 +37,22 @@
         <div
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <a href="admin_home.html" class="logo d-flex align-items-center me-auto me-xl-0">
                 <img src="assets/img/leaf_Logo.png" alt="Logo MontaNature">
-                <h1 class="sitename">MontaNature</h1>
+                <h1 class="sitename">MontaNature administratrice</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="admin_home.html" class="active">Accueil</a></li>
                     <li><a href="#about">À propos</a></li>
 
                     <li class="dropdown">
                         <a href="#services"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             <li><a href="admin_activitiys.html">Activités d'animation</a></li>
-                            <li><a href="Nature_Management.html">Gestion de la nature</a></li>
-                            <li><a href="Labellisation.html">Service de labellisation</a></li>
+                            <li><a href="admin_nature.html">Gestion de la nature</a></li>
+                            <li><a href="admin_lebellisation.html">Service de labellisation</a></li>
                         </ul>
                     </li>
 
@@ -61,7 +61,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="index.html">se déconnecter</a>
+            <a class="btn-getstarted" href="/logout">se déconnecter</a>
 
         </div>
     </header>
@@ -76,7 +76,7 @@
 
                         <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
                             <div class="main-heading">
-                                <h1>ANIMATION<br>
+                                <h1 id="main-heading">ANIMATION
                                     GESTION DE LA NATURE</h1>
                             </div>
                         </div>
@@ -84,12 +84,19 @@
                         <div class="divider"></div>
 
                         <div class="description">
-                            <p>
-                                Animation – Concours Cantonal de Fauchage, ateliers de fauchage, découverte des
-                                plantes comestibles, animations pour enfants, et opérations Clean Riv'.<br>
+                            <p id="main-description">Animation – Concours Cantonal de Fauchage, ateliers de fauchage,
+                                découverte des plantes comestibles, animations pour enfants, et opérations Clean Riv'.
                                 Gestion de la nature – Repenser son jardin, inviter la faune, cultiver sa propre
                                 nourriture, créer des espaces naturels durables et bien plus encore.
+
                             </p>
+                        </div>
+
+                        <div class="text-end mb-3">
+                            <button class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
+                                data-bs-target="#headingEditModal">
+                                <i class="bi bi-pencil-square me-1"></i> Modifier la section
+                            </button>
                         </div>
 
                         <div class="cta-button">
@@ -105,15 +112,16 @@
                     <div class="visual-content">
                         <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
                             <div class="fluid-shape">
-                                <img src="assets/img/abstract/hero7.png" alt="Abstract Fluid Shape" class="fluid-img">
+                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape"
+                                    class="fluid-img">
                             </div>
                         </div>
                         <div class="stats-card">
                             <div class="stats-number">
-                                <h2>20+</h2>
+                                <h2 id="stats-number">20+</h2>
                             </div>
                             <div class="stats-label">
-                                <p>Animations Nature Réalisées</p>
+                                <p id="stats-label">Animations Nature Réalisées</p>
                             </div>
                         </div>
                     </div>
@@ -162,12 +170,12 @@
                         <div class="service-icon">
                             <i class="bi bi-tree"></i>
                         </div>
-                        <a href="Nature_Management.html"
+                        <a href="admin_nature.html"
                             class="card-action d-flex align-items-center justify-content-center rounded-circle">
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
                         <h3>
-                            <a href="Nature_Management.html">Gestion de <span>la nature</span></a>
+                            <a href="admin_nature.html">Gestion de <span>la nature</span></a>
                         </h3>
                         <p>
                             Conseils pour repenser votre jardin, préserver la biodiversité, accueillir la faune et
@@ -182,12 +190,12 @@
                         <div class="service-icon">
                             <i class="bi bi-patch-check"></i>
                         </div>
-                        <a href="Labellisation.html"
+                        <a href="admin_lebellisation.html"
                             class="card-action d-flex align-items-center justify-content-center rounded-circle">
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
                         <h3>
-                            <a href="Labellisation.html">Service de <span>labellisation</span></a>
+                            <a href="admin_lebellisation.html">Service de <span>labellisation</span></a>
                         </h3>
                         <p>
                             Accompagnement pour labelliser votre production agricole, entreprise ou démarche éthique
@@ -207,7 +215,7 @@
             <div class="row gy-4">
 
                 <div class="col-lg-5 col-md-12 footer-about">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="admin_home.html" class="logo d-flex align-items-center">
                         <img src="assets/img/siteLogo.png" alt="MontaNature Logo">
 
                     </a>
@@ -321,6 +329,44 @@
     </div>
 
 
+    <!-- -------------------------------------------------------------------update head --------------------------------------------------------------------------- -->
+
+    <div class="modal fade" id="headingEditModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <form id="headingEditForm">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Modifier le texte principal</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Titre Principal</label>
+                            <textarea id="editMainHeading" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea id="editDescription" class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editStatsNumber" class="form-label">Stat Number</label>
+                            <input type="text" class="form-control" id="editStatsNumber" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editStatsLabel" class="form-label">Stat Label</label>
+                            <input type="text" class="form-control" id="editStatsLabel" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Preloader -->
     <div id="preloader"></div>
@@ -337,6 +383,7 @@
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/footerEdit.js"></script>
+    <script src="assets/js/home_headUpdate.js"></script>
 
 
 

@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const Footer = require('./models/Footer');
 const ActivityCard = require('./models/activity_cards');
+const PageHeading = require("./models/homeHead");
 
 const app = express();
 const PORT = 3000;
@@ -104,6 +105,41 @@ app.post('/api/save-footer', async (req, res) => {
     res.status(500).json({ error: 'Failed to save footer data' });
   }
 });
+
+//--------------------------------------------------------------------- home head update -----------------------------------------------------------------
+
+// GET
+app.get("/api/heading", async (req, res) => {
+  try {
+    const data = await PageHeading.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching heading:", err);
+    res.status(500).json({ error: "Failed to fetch heading" });
+  }
+});
+
+// PUT
+app.put("/api/heading", async (req, res) => {
+  try {
+    const { mainHeading, description, statsNumber, statsLabel } = req.body;
+    let data = await PageHeading.findOne();
+    if (!data) {
+      data = new PageHeading({ mainHeading, description, statsNumber, statsLabel });
+    } else {
+      data.mainHeading = mainHeading;
+      data.description = description;
+      data.statsNumber = statsNumber;
+      data.statsLabel = statsLabel;
+    }
+    await data.save();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error("Error updating heading:", err);
+    res.status(500).json({ error: "Failed to update heading" });
+  }
+});
+
 
 // ------------------------------------------------------------------ read footer data -------------------------------------------------------------------
 
