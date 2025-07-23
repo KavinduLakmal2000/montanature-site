@@ -77,20 +77,28 @@
                         <div class="content">
 
                             <div class="main-heading">
-                                <h1>ACTIVITÉS<br>
-                                    D'ANIMATION</h1>
+                                <h1 id="activity-main-heading">ACTIVITÉSD'ANIMATION</h1>
                             </div>
 
                             <div class="divider"></div>
 
                             <div class="description">
-                                <p>
+                                <p id="activity-description">
                                     Découvrez nos animations nature : concours cantonal de fauchage, ateliers de
                                     fauchage, prise en main,
                                     gestuelle, découverte des plantes sauvages comestibles, animations pour enfants, et
                                     initiatives comme l’Opération Clean Riv’.
                                 </p>
                             </div>
+
+
+                            <div class="text-end mb-3">
+                                <button class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
+                                    data-bs-target="#headingEditModal">
+                                    <i class="bi bi-pencil-square me-1"></i> Modifier la section
+                                </button>
+                            </div>
+
                             <div class="cta-button">
                                 <a href="#activitys" class="btn">
                                     <span>VOIR PLUS...</span>
@@ -103,7 +111,8 @@
                     <div class="col-lg-5" data-aos="zoom-out">
                         <div class="visual-content">
                             <div class="fluid-shape">
-                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape" class="fluid-img">
+                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape"
+                                    class="fluid-img">
                             </div>
                         </div>
                     </div>
@@ -376,6 +385,40 @@
             </div>
         </div>
 
+        <!-- -------------------------------------------------------------------------------- head edit model- ---------------------------------------------------- -->
+
+        <div class="modal fade" id="headingEditModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3">
+                    <form id="headingEditForm">
+                        <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">Modifier le texte principal</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Titre Principal</label>
+                                <textarea id="editMainHeading" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea id="editDescription" class="form-control" rows="4"></textarea>
+                            </div>
+
+                            <p class="text-muted mt-2" style="font-size: 0.875rem;">
+                                💡 Pour ajouter un saut de ligne, utilisez <code>&lt;br&gt;</code> entre les phrases.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" type="submit">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -389,6 +432,7 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/activity_cards.js"></script>
         <script src="assets/js/footerEdit.js"></script>
+        <script src="assets/js/activityHead.js"></script>
     </div>
 </body>
 

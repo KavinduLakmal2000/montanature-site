@@ -77,19 +77,27 @@
                         <div class="content">
 
                             <div class="main-heading">
-                                <h1>GESTION<br>
+                                <h1 id="nature-main-heading">GESTION<br>
                                     DE LA NATURE</h1>
                             </div>
 
                             <div class="divider"></div>
 
                             <div class="description">
-                                <p>
+                                <p id="nature-description">
                                     Gestion de la nature – Repenser son jardin, inviter la faune, récupérer l’eau,
                                     cultiver sa propre nourriture, augmenter la biodiversité, créer des espaces naturels
                                     durables, organiser des conférences et sensibiliser par l’ethno-botanique.
                                 </p>
                             </div>
+
+                            <div class="text-end mb-3">
+                                <button class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
+                                    data-bs-target="#headingEditModal">
+                                    <i class="bi bi-pencil-square me-1"></i> Modifier la section
+                                </button>
+                            </div>
+
                             <div class="cta-button">
                                 <a href="#manage" class="btn">
                                     <span>VOIR PLUS...</span>
@@ -102,7 +110,8 @@
                     <div class="col-lg-5" data-aos="zoom-out">
                         <div class="visual-content">
                             <div class="fluid-shape">
-                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape" class="fluid-img">
+                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape"
+                                    class="fluid-img">
                             </div>
 
                         </div>
@@ -262,6 +271,101 @@
         <!-- Preloader -->
         <div id="preloader"></div>
 
+  <!-- ----------------------------------------------------------------------------------------footer update------------------------------------------------------------ -->
+
+        <div class="modal fade" id="footerEditModal" tabindex="-1" aria-labelledby="footerEditModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-primary text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="footerEditModalLabel">
+                            <i class="bi bi-pencil-square me-2"></i>Modifier les informations du pied de page
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="footerEditForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="address" class="form-label">Adresse</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="address"
+                                        name="address" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control rounded-pill shadow-sm" id="email"
+                                        name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telephone" class="form-label">Mobile</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="telephone"
+                                        name="telephone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="facebook" class="form-label">Facebook</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="facebook"
+                                        name="facebook">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="instagram" class="form-label">Instagram</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="instagram"
+                                        name="instagram">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="linkedin" class="form-label">LinkedIn</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="linkedin"
+                                        name="linkedin">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="twitter" class="form-label">Twitter</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="twitter"
+                                        name="twitter">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-save me-2"></i>Enregistrer
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- ---------------------------------------------------------------------------head edit -------------------------------------------------------------------------------- -->
+
+        <div class="modal fade" id="headingEditModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3">
+                    <form id="headingEditForm">
+                        <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">Modifier le texte principal</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Titre Principal</label>
+                                <textarea id="editMainHeading" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea id="editDescription" class="form-control" rows="4"></textarea>
+                            </div>
+
+                            <p class="text-muted mt-2" style="font-size: 0.875rem;">
+                                💡 Pour ajouter un saut de ligne, utilisez <code>&lt;br&gt;</code> entre les phrases.
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" type="submit">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -275,6 +379,7 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/footerEdit.js"></script>
         <script src="assets/js/footerLoad.js"></script>
+        <script src="assets/js/natureHead.js"></script>
     </div>
 </body>
 

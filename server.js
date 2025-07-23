@@ -7,6 +7,8 @@ const path = require('path');
 const Footer = require('./models/Footer');
 const ActivityCard = require('./models/activity_cards');
 const PageHeading = require("./models/homeHead");
+const ActivityHead = require("./models/ActivityHead");
+const NatureHead = require("./models/NatureHead");
 
 const app = express();
 const PORT = 3000;
@@ -137,6 +139,70 @@ app.put("/api/heading", async (req, res) => {
   } catch (err) {
     console.error("Error updating heading:", err);
     res.status(500).json({ error: "Failed to update heading" });
+  }
+});
+
+// ------------------------------------------------------------------ activity head update ------------------------------------------------------------
+
+// GET activity heading
+app.get("/api/activity-heading", async (req, res) => {
+  try {
+    const data = await ActivityHead.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching activity heading:", err);
+    res.status(500).json({ error: "Failed to fetch activity heading" });
+  }
+});
+
+// PUT (update or insert) activity heading
+app.put("/api/activity-heading", async (req, res) => {
+  try {
+    const { mainHeading, description } = req.body;
+    let data = await ActivityHead.findOne();
+    if (!data) {
+      data = new ActivityHead({ mainHeading, description });
+    } else {
+      data.mainHeading = mainHeading;
+      data.description = description;
+    }
+    await data.save();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error("Error updating activity heading:", err);
+    res.status(500).json({ error: "Failed to update activity heading" });
+  }
+});
+
+// -------------------------------------------------------------------- neture head edit ---------------------------------------------------------------
+
+// GET nature heading
+app.get("/api/nature-heading", async (req, res) => {
+  try {
+    const data = await NatureHead.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching nature heading:", err);
+    res.status(500).json({ error: "Failed to fetch nature heading" });
+  }
+});
+
+// PUT (update or insert) nature heading
+app.put("/api/nature-heading", async (req, res) => {
+  try {
+    const { mainHeading, description } = req.body;
+    let data = await NatureHead.findOne();
+    if (!data) {
+      data = new NatureHead({ mainHeading, description });
+    } else {
+      data.mainHeading = mainHeading;
+      data.description = description;
+    }
+    await data.save();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error("Error updating nature heading:", err);
+    res.status(500).json({ error: "Failed to update nature heading" });
   }
 });
 
