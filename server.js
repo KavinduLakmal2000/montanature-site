@@ -10,6 +10,7 @@ const PageHeading = require("./models/homeHead");
 const ActivityHead = require("./models/ActivityHead");
 const NatureHead = require("./models/NatureHead");
 const LabelHead = require("./models/LabelHead");
+const NatureCard = require("./models/NatureCard");
 
 
 const app = express();
@@ -65,12 +66,13 @@ app.post('/login', async (req, res) => {
 
     if (admin) {
       req.session.isAuthenticated = true;
-      res.redirect('/admin_home.html'); // redirect after login
+      res.json({ success: true }); // ✅ Send JSON response
     } else {
-      res.send('<h2>Login failed. Invalid credentials. <a href="/login.html">Try again</a></h2>');
+      res.json({ success: false, message: 'E-mail ou mot de passe invalide' });
     }
   } catch (error) {
-    res.status(500).send('Server error');
+    console.error('Login error:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
   }
 });
 
@@ -82,11 +84,6 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login.html');
   }
 }
-
-// Example of protected page (optional)
-app.get('/admin-only-page', isAuthenticated, (req, res) => {
-  res.send('<h1>Admin Only Content</h1>');
-});
 
 // Logout route
 app.get('/logout', (req, res) => {
@@ -205,6 +202,30 @@ app.put("/api/nature-heading", async (req, res) => {
   } catch (err) {
     console.error("Error updating nature heading:", err);
     res.status(500).json({ error: "Failed to update nature heading" });
+  }
+});
+
+// ------------------------------------------------------------------ nature card editing --------------------------------------------------------------
+// CREATE
+app.post('/api/nature-cards', async (req, res) => {
+  try {
+    const newCard = new NatureCard(req.body);
+    const saved = await newCard.save();
+    res.status(201).json({ success: true, card: saved });
+  } catch (err) {
+    console.error("Nature card save error:", err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// READ
+app.get('/api/nature-cards', async (req, res) => {
+  try {
+    const cards = await NatureCard.find();
+    res.json(cards);
+  } catch (err) {
+    console.error("Nature cards fetch error:", err);
+    res.status(500).json({ success: false });
   }
 });
 

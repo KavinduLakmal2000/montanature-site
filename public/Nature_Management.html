@@ -77,19 +77,20 @@
                         <div class="content">
 
                             <div class="main-heading">
-                                <h1>GESTION<br>
+                                <h1 id="nature-main-heading">GESTION<br>
                                     DE LA NATURE</h1>
                             </div>
 
                             <div class="divider"></div>
 
                             <div class="description">
-                                <p>
+                                <p id="nature-description">
                                     Gestion de la nature – Repenser son jardin, inviter la faune, récupérer l’eau,
                                     cultiver sa propre nourriture, augmenter la biodiversité, créer des espaces naturels
                                     durables, organiser des conférences et sensibiliser par l’ethno-botanique.
                                 </p>
                             </div>
+
                             <div class="cta-button">
                                 <a href="#manage" class="btn">
                                     <span>VOIR PLUS...</span>
@@ -102,7 +103,8 @@
                     <div class="col-lg-5" data-aos="zoom-out">
                         <div class="visual-content">
                             <div class="fluid-shape">
-                                <img src="assets/img/abstract/hero2.png" alt="Abstract Fluid Shape" class="fluid-img">
+                                <img src="assets/img/abstract/hero2.png" alt="Abstract Fluid Shape"
+                                    class="fluid-img">
                             </div>
 
                         </div>
@@ -202,6 +204,7 @@
 
         <footer id="footer" class="footer">
 
+
             <div class="container footer-top">
                 <div class="row gy-4">
 
@@ -212,10 +215,10 @@
                         </a>
                         <p>Animation, Gestion de la nature & Labellisation pour un environnement durable.</p>
                         <div class="social-links d-flex mt-4">
-                            <a href="#"><i class="bi bi-twitter"></i></a>
-                            <a href="#"><i class="bi bi-facebook"></i></a>
-                            <a href="#"><i class="bi bi-instagram"></i></a>
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a id="footer-facebook" href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                            <a id="footer-instagram" href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a id="footer-linkedin" href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a id="footer-twitter" href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -230,9 +233,9 @@
 
                     <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact</h4>
-                        <p>A108 Adam Street, New York, NY 535022, USA</p>
-                        <p><strong>Téléphone:</strong> +1 5589 55488 55</p>
-                        <p><strong>Email:</strong> info@example.com</p>
+                        <p><span id="footer-address"></span></p>
+                        <p><strong>Téléphone:</strong> <span id="footer-telephone"></span></p>
+                        <p><strong>Email:</strong> <span id="footer-email"></span></p>
                     </div>
 
                 </div>
@@ -265,6 +268,8 @@
 
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/footerLoad.js"></script>
+        <script src="assets/js/natureHead.js"></script>
     </div>
 </body>
 

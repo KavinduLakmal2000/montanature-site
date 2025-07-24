@@ -127,86 +127,24 @@
                 <h2>Gestion de la nature</h2>
                 <div><span>Nos Activités</span> <span class="description-title">Écologiques</span></div>
             </div>
-            <!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="row gy-4">
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="team-member d-flex align-items-start lift-on-hover position-relative p-3 rounded">
-                            <div class="member-icon me-4">
-                                <i class="bi bi-flower2 fs-1 text-success"></i>
-                            </div>
-                            <div class="member-info flex-grow-1 position-relative">
-                                <h4>Jardin durable</h4>
-                                <span>Repenser son jardin</span>
-                                <p>Réduire l’entretien, inviter la faune, et augmenter la biodiversité pour un jardin
-                                    naturel.</p>
-                                <a href="#"
-                                    class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Admin Only: Add Button -->
+                <div class="text-end my-3" id="nature-add-btn-container">
+                    <button class="btn btn-success rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#addNatureCardModal">
+                        <i class="bi bi-plus-circle me-2"></i>Ajouter une carte
+                    </button>
+                </div>
 
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="team-member d-flex align-items-start lift-on-hover position-relative p-3 rounded">
-                            <div class="member-icon me-4">
-                                <i class="bi bi-droplet-half fs-1 text-primary"></i>
-                            </div>
-                            <div class="member-info flex-grow-1 position-relative">
-                                <h4>Écologie pratique</h4>
-                                <span>Solutions concrètes</span>
-                                <p>Récupérer l'eau, cultiver sa propre nourriture, valoriser son patrimoine naturel.</p>
-                                <a href="#"
-                                    class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="team-member d-flex align-items-start lift-on-hover position-relative p-3 rounded">
-                            <div class="member-icon me-4">
-                                <i class="bi bi-clipboard-data fs-1 text-warning"></i>
-                            </div>
-                            <div class="member-info flex-grow-1 position-relative">
-                                <h4>Gestion et étude</h4>
-                                <span>Management & Studies</span>
-                                <p>Étude d'impact, création d’espace naturel équilibré, élaboration de plan de gestion.
-                                </p>
-                                <a href="#"
-                                    class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="team-member d-flex align-items-start lift-on-hover position-relative p-3 rounded">
-                            <div class="member-icon me-4">
-                                <i class="bi bi-book-half fs-1 text-danger"></i>
-                            </div>
-                            <div class="member-info flex-grow-1 position-relative">
-                                <h4>Connaissances et sensibilisation</h4>
-                                <span>Awareness & Culture</span>
-                                <p>Approche ethnobotanique, organisation de conférences et ateliers de sensibilisation.
-                                </p>
-                                <a href="#"
-                                    class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Dynamic Cards Load Here -->
+                <div class="row gy-4" id="nature-cards-container">
+                    <!-- Cards will be loaded here via JS -->
                 </div>
             </div>
-
         </section>
+
 
 
         <footer id="footer" class="footer">
@@ -271,7 +209,72 @@
         <!-- Preloader -->
         <div id="preloader"></div>
 
-  <!-- ----------------------------------------------------------------------------------------footer update------------------------------------------------------------ -->
+        <!-- ----------------------------------------------------------------------------------- card adding ------------------------------------------------------------------ -->
+
+        <!-- Add Nature Card Modal -->
+        <div class="modal fade" id="addNatureCardModal" tabindex="-1" aria-labelledby="addNatureCardModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-success text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="addNatureCardModalLabel">
+                            <i class="bi bi-plus-circle me-2"></i>Ajouter une nouvelle carte
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="addNatureCardForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="natureCardTitle" class="form-label">Titre</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="natureCardTitle"
+                                        name="title" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="natureCardIcon" class="form-label">Icône (Bootstrap)</label>
+                                    <select class="form-select rounded-pill shadow-sm" id="natureCardIcon" name="icon"
+                                        required>
+                                        <option value="" disabled selected>Choisir une icône</option>
+                                        <option value="bi-flower2">🌼 Fleur</option>
+                                        <option value="bi-droplet-half">💧 Goutte</option>
+                                        <option value="bi-clipboard-data">📋 Statistiques</option>
+                                        <option value="bi-book-half">📖 Livre</option>
+                                        <!-- Add more icons if needed -->
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="natureCardSubheading" class="form-label">Sous-titre</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm"
+                                        id="natureCardSubheading" name="subheading" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="natureCardLink" class="form-label">Lien du bouton</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="natureCardLink"
+                                        name="link" placeholder="https://...">
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <label for="natureCardDescription" class="form-label">Description</label>
+                                    <textarea class="form-control shadow-sm" id="natureCardDescription"
+                                        name="description" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-check-circle me-2"></i>Ajouter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ----------------------------------------------------------------------------------------footer update------------------------------------------------------------ -->
 
         <div class="modal fade" id="footerEditModal" tabindex="-1" aria-labelledby="footerEditModalLabel"
             aria-hidden="true">
@@ -334,7 +337,7 @@
             </div>
         </div>
 
-<!-- ---------------------------------------------------------------------------head edit -------------------------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------------------head edit -------------------------------------------------------------------------------- -->
 
         <div class="modal fade" id="headingEditModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -366,6 +369,80 @@
             </div>
         </div>
 
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const container = document.getElementById("nature-cards-container");
+
+                fetch('/api/nature-cards')
+                    .then(res => res.json())
+                    .then(cards => {
+                        cards.forEach(card => {
+                            const html = createNatureCardHTML(card);
+                            container.insertAdjacentHTML('beforeend', html);
+                        });
+                    })
+                    .catch(err => console.error("Error loading nature cards:", err));
+            });
+            function createNatureCardHTML(card) {
+                return `
+                <div class="col-lg-6" data-aos="fade-up">
+                <div class="team-member d-flex align-items-start lift-on-hover position-relative p-3 rounded">
+                    <div class="member-icon me-4">
+                    <i class="bi ${card.icon} fs-1 text-success"></i>
+                    </div>
+                    <div class="member-info flex-grow-1 position-relative">
+                    <h4>${card.title}</h4>
+                    <span>${card.subheading}</span>
+                    <p>${card.description}</p>
+                    <a href="${card.link || '#'}" target="_blank" rel="noopener noreferrer"
+                        class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
+                        <i class="bi bi-arrow-up-right"></i>
+                    </a>
+                    </div>
+                </div>
+                </div>
+            `;
+            }
+
+
+
+            document.getElementById("addNatureCardForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const newCard = {
+                    title: document.getElementById("natureCardTitle").value,
+                    icon: document.getElementById("natureCardIcon").value,
+                    subheading: document.getElementById("natureCardSubheading").value,
+                    description: document.getElementById("natureCardDescription").value,
+                    link: document.getElementById("natureCardLink").value || "#"
+                };
+
+                fetch("/api/nature-cards", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newCard)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Succès", "Carte ajoutée !", "success").then(() => location.reload());
+                            document.getElementById("addNatureCardForm").reset();
+                            bootstrap.Modal.getInstance(document.getElementById("addNatureCardModal")).hide();
+                        } else {
+                            Swal.fire("Erreur", "Échec de l'ajout de la carte.", "error");
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Add nature card error:", err);
+                        Swal.fire("Erreur", "Erreur lors de l'ajout : " + err.message, "error");
+                    });
+            });
+
+
+        </script>
+
+
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -380,6 +457,7 @@
         <script src="assets/js/footerEdit.js"></script>
         <script src="assets/js/footerLoad.js"></script>
         <script src="assets/js/natureHead.js"></script>
+        <script src="assets/js/sweetalert2.all.min.js"></script>
     </div>
 </body>
 

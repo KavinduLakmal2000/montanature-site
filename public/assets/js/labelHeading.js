@@ -23,26 +23,51 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle form submit
   document.getElementById("headingEditModal").addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const mainHeading = document.getElementById("editMainHeading").value;
     const description = document.getElementById("editDescription").value;
 
-    const res = await fetch("/api/label-heading", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ mainHeading, description })
-    });
+    try {
+      const res = await fetch("/api/label-heading", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ mainHeading, description })
+      });
 
-    const result = await res.json();
-    if (result.success) {
-      headingEl.innerHTML = result.data.mainHeading;
-      descriptionEl.innerHTML = result.data.description;
+      const result = await res.json();
 
-      const modalInstance = bootstrap.Modal.getInstance(headingModal);
-      modalInstance.hide();
-    } else {
-      alert("Échec de la mise à jour.");
+      if (result.success) {
+        headingEl.innerHTML = result.data.mainHeading;
+        descriptionEl.innerHTML = result.data.description;
+
+        const modalInstance = bootstrap.Modal.getInstance(headingModal);
+        modalInstance.hide();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Mise à jour réussie',
+          text: 'Les données ont été mises à jour avec succès.',
+          confirmButtonColor: '#3085d6'
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Échec',
+          text: 'Échec de la mise à jour.',
+          confirmButtonColor: '#d33'
+        });
+      }
+    } catch (error) {
+      console.error("Erreur serveur :", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur serveur',
+        text: 'Une erreur est survenue côté serveur.',
+        confirmButtonColor: '#d33'
+      });
     }
   });
+
 });

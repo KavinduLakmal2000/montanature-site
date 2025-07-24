@@ -76,21 +76,22 @@
                         <div class="content">
 
                             <div class="main-heading">
-                                <h1>LABELLISATION<br>
+                                <h1 id="label-main-heading">LABELLISATION<br>
                                     ÉCOLOGIQUE</h1>
                             </div>
 
                             <div class="divider"></div>
 
                             <div class="description">
-                                <p>
-                                    Obtenez une reconnaissance officielle de vos engagements durables : production
-                                    agricole,
+                                <p id="label-description">
+                                    Obtenez une reconnaissance officielle de vos engagements durables :
+                                    productionagricole,
                                     gestion d’entreprise ou démarches éthiques. MontaNature vous accompagne dans chaque
                                     étape
                                     du processus de labellisation.
                                 </p>
                             </div>
+
                             <div class="cta-button">
                                 <a href="#labels" class="btn">
                                     <span>VOIR PLUS...</span>
@@ -196,6 +197,7 @@
 
         <footer id="footer" class="footer">
 
+
             <div class="container footer-top">
                 <div class="row gy-4">
 
@@ -206,10 +208,10 @@
                         </a>
                         <p>Animation, Gestion de la nature & Labellisation pour un environnement durable.</p>
                         <div class="social-links d-flex mt-4">
-                            <a href="#"><i class="bi bi-twitter"></i></a>
-                            <a href="#"><i class="bi bi-facebook"></i></a>
-                            <a href="#"><i class="bi bi-instagram"></i></a>
-                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a id="footer-facebook" href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                            <a id="footer-instagram" href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a id="footer-linkedin" href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a id="footer-twitter" href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
 
@@ -224,9 +226,9 @@
 
                     <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact</h4>
-                        <p>A108 Adam Street, New York, NY 535022, USA</p>
-                        <p><strong>Téléphone:</strong> +1 5589 55488 55</p>
-                        <p><strong>Email:</strong> info@example.com</p>
+                        <p><span id="footer-address"></span></p>
+                        <p><strong>Téléphone:</strong> <span id="footer-telephone"></span></p>
+                        <p><strong>Email:</strong> <span id="footer-email"></span></p>
                     </div>
 
                 </div>
@@ -259,6 +261,8 @@
 
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/labelHeading.js"></script>
+        <script src="assets/js/footerLoad.js"></script>
     </div>
 </body>
 

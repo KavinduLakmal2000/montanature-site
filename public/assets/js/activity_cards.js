@@ -75,62 +75,72 @@ document.getElementById("addCardForm").addEventListener("submit", function (e) {
     category: document.getElementById("cardCategory").value,
     image: document.getElementById("cardImage").value,
     description: document.getElementById("cardDescription").value,
-    lightbox: document.getElementById("cardImage").value // same as image for now
+    lightbox: document.getElementById("cardImage").value
   };
 
-fetch("/api/cards", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(newCard)
-})
-  .then(async (res) => {
-    if (!res.ok) throw new Error("Server responded with " + res.status);
-    return res.json();
+  fetch("/api/cards", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newCard)
   })
-  .then((data) => {
-    if (data.success) {
-      alert("Card added!");
-      document.getElementById("addCardForm").reset();
-      const cardHTML = createCardHTML(data.card);
-      document.getElementById("admin-cards-container").insertAdjacentHTML('afterbegin', cardHTML);
-      bootstrap.Modal.getInstance(document.getElementById("addCardModal")).hide();
-    } else {
-      alert("Failed to add card.");
-    }
-  })
-  .catch((err) => {
-    console.error("Error adding card:", err);
-    alert("Error occurred: " + err.message);
-  });
-
+    .then(async (res) => {
+      if (!res.ok) throw new Error("Server responded with " + res.status);
+      return res.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        Swal.fire("Succès", "Card added!", "success").then(() => location.reload());
+        document.getElementById("addCardForm").reset();
+        const cardHTML = createCardHTML(data.card);
+        document.getElementById("admin-cards-container").insertAdjacentHTML('afterbegin', cardHTML);
+        bootstrap.Modal.getInstance(document.getElementById("addCardModal")).hide();
+      } else {
+        Swal.fire("Erreur", "Failed to add card.", "error");
+      }
+    })
+    .catch((err) => {
+      console.error("Error adding card:", err);
+      Swal.fire("Erreur", "Error occurred: " + err.message, "error");
+    });
 });
 
 if (document.getElementById("admin-cards-container")) {
-  // Handle DELETE
+  // DELETE
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete-btn')) {
       const cardId = e.target.getAttribute('data-id');
-      if (confirm('Supprimer cette carte ?')) {
-        fetch(`/api/cards/${cardId}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              e.target.closest('.portfolio-item').remove();
-              alert("Carte supprimée !");
-            } else {
-              alert("Erreur lors de la suppression.");
-            }
+
+      Swal.fire({
+        title: 'Êtes-vous sûr ?',
+        text: "Supprimer cette carte ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Oui, supprimer !',
+        cancelButtonText: 'Annuler'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`/api/cards/${cardId}`, {
+            method: 'DELETE'
           })
-          .catch(err => {
-            console.error("Delete error:", err);
-          });
-      }
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                e.target.closest('.portfolio-item').remove();
+                Swal.fire("Supprimé", "Carte supprimée !", "success").then(() => location.reload());
+              } else {
+                Swal.fire("Erreur", "Erreur lors de la suppression.", "error");
+              }
+            })
+            .catch(err => {
+              console.error("Delete error:", err);
+              Swal.fire("Erreur", "Erreur lors de la suppression.", "error");
+            });
+        }
+      });
     }
   });
 
-  // Handle EDIT (open modal)
+  // EDIT - open modal
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('edit-btn')) {
       const cardId = e.target.getAttribute('data-id');
@@ -146,7 +156,7 @@ if (document.getElementById("admin-cards-container")) {
     }
   });
 
-  // Handle submit updated form
+  // UPDATE
   document.getElementById("editCardForm").addEventListener("submit", function (e) {
     e.preventDefault();
     const id = document.getElementById("editCardId").value;
@@ -167,14 +177,15 @@ if (document.getElementById("admin-cards-container")) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          alert("Carte mise à jour !");
-          location.reload();
+          Swal.fire("Succès", "Carte mise à jour !", "success").then(() => location.reload());
         } else {
-          alert("Erreur lors de la mise à jour.");
+          Swal.fire("Erreur", "Erreur lors de la mise à jour.", "error");
         }
       })
       .catch(err => {
         console.error("Update error:", err);
+        Swal.fire("Erreur", "Erreur lors de la mise à jour.", "error");
       });
   });
 }
+
