@@ -9,12 +9,14 @@ const ActivityCard = require('./models/activity_cards');
 const PageHeading = require("./models/homeHead");
 const ActivityHead = require("./models/ActivityHead");
 const NatureHead = require("./models/NatureHead");
+const LabelHead = require("./models/LabelHead");
+
 
 const app = express();
 const PORT = 3000;
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/test', {
+mongoose.connect('mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/montanature', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log("Connected to MongoDB"))
@@ -205,6 +207,41 @@ app.put("/api/nature-heading", async (req, res) => {
     res.status(500).json({ error: "Failed to update nature heading" });
   }
 });
+
+// -------------------------------------------------------------------- label head edit ----------------------------------------------------------------
+
+// GET label heading
+app.get("/api/label-heading", async (req, res) => {
+  try {
+    const data = await LabelHead.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching label heading:", err);
+    res.status(500).json({ error: "Failed to fetch label heading" });
+  }
+});
+
+// PUT (update or insert) label heading
+app.put("/api/label-heading", async (req, res) => {
+  try {
+    const { mainHeading, description } = req.body;
+    let data = await LabelHead.findOne();
+
+    if (!data) {
+      data = new LabelHead({ mainHeading, description });
+    } else {
+      data.mainHeading = mainHeading;
+      data.description = description;
+    }
+
+    await data.save();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error("Error updating label heading:", err);
+    res.status(500).json({ error: "Failed to update label heading" });
+  }
+});
+
 
 
 // ------------------------------------------------------------------ read footer data -------------------------------------------------------------------
