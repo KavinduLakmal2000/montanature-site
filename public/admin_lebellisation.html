@@ -119,87 +119,37 @@
             </div>
         </section>
 
+        <!-- Labels Section -->
         <section id="labels" class="steps section">
-
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Labellisation</h2>
                 <div><span>Reconnaissance</span> <span class="description-title">Écoresponsable</span></div>
             </div>
+
+            <div class="container">
+                <div class="text-end my-3" id="Label-add-btn-container">
+                    <button class="btn btn-success rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#addLabelCardModal">
+                        <i class="bi bi-plus-circle me-2"></i>Ajouter une carte
+                    </button>
+                </div>
+            </div>
             <!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
-                <div class="steps-wrapper">
-
-                    <!-- Step 1 -->
-                    <div class="step-item" data-aos="fade-right" data-aos-delay="200">
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="bi bi-award"></i>
-                            </div>
-                            <div class="step-info">
-                                <span class="step-number">Étape 01</span>
-                                <h3>Labelliser sa production agricole</h3>
-                                <p>Accompagnement pour valoriser des pratiques agricoles durables : sol, eau,
-                                    biodiversité, et respect des saisons.</p>
-                                <a href="Labellisation.html" class="btn btn-outline-primary mt-2">
-                                    En savoir plus
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Step Item -->
-
-                    <!-- Step 2 -->
-                    <div class="step-item" data-aos="fade-left" data-aos-delay="300">
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="bi bi-building"></i>
-                            </div>
-                            <div class="step-info">
-                                <span class="step-number">Étape 02</span>
-                                <h3>Labelliser son entreprise</h3>
-                                <p>Mettre en avant une gestion écoresponsable de votre entreprise : gestion des
-                                    ressources, énergie, déchets et bien-être au travail.</p>
-                                <a href="Labellisation.html" class="btn btn-outline-primary mt-2">
-                                    En savoir plus
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Step Item -->
-
-                    <!-- Step 3 -->
-                    <div class="step-item" data-aos="fade-right" data-aos-delay="400">
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <div class="step-info">
-                                <span class="step-number">Étape 03</span>
-                                <h3>Labelliser son éthique</h3>
-                                <p>Valoriser vos engagements éthiques et sociaux à travers des labels reflétant vos
-                                    valeurs humaines et environnementales.</p>
-                                <a href="Labellisation.html" class="btn btn-outline-primary mt-2">
-                                    En savoir plus
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Step Item -->
-
+                <div class="steps-wrapper" id="adminLabelCardContainer">
+                    <!-- Dynamic label cards will be inserted here by JavaScript -->
                 </div>
 
                 <!-- Final CTA -->
-                <div class="text-center mt-5" data-aos="zoom-in" data-aos-delay="500">
+                <!-- <div class="text-center mt-5" data-aos="zoom-in" data-aos-delay="500">
                     <a href="#" class="btn btn-warning btn-lg">
                         <i class="bi bi-patch-check-fill me-1"></i> Commencer la labellisation
                     </a>
-                </div>
-
+                </div> -->
             </div>
         </section>
-
         <!-- ------------------------------------------------------------------------------------------------------ -->
 
         <footer id="footer" class="footer">
@@ -262,6 +212,158 @@
 
         <!-- Preloader -->
         <div id="preloader"></div>
+
+        <!-- --------------------------------------------------------------------------------- add new card modal ------------------------------------------------------------ -->
+
+        <!-- Add Label Card Modal -->
+        <div class="modal fade" id="addLabelCardModal" tabindex="-1" aria-labelledby="addLabelCardModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-success text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="addLabelCardModalLabel">
+                            <i class="bi bi-plus-circle me-2"></i>Ajouter une carte (Labellisation)
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="addLabelCardForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="labelStepNumber" class="form-label">Numéro d'étape</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="labelStepNumber"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="labelIcon" class="form-label">Icône Bootstrap</label>
+                                    <select class="form-select rounded-pill shadow-sm" id="labelIcon" required>
+                                        <option value="" disabled selected>Choisir une icône</option>
+                                        <option value="bi-award">🏆 Award</option>
+                                        <option value="bi-building">🏢 Building</option>
+                                        <option value="bi-heart">❤️ Heart</option>
+                                        <option value="bi-star">⭐ Star</option>
+                                        <option value="bi-people">👥 People</option>
+                                        <option value="bi-tree">🌳 Tree</option>
+                                        <option value="bi-gear">⚙️ Gear</option>
+                                        <option value="bi-lightning">⚡ Lightning</option>
+                                        <option value="bi-bicycle">🚲 Bicycle</option>
+                                        <option value="bi-camera">📷 Camera</option>
+                                        <option value="bi-cloud">☁️ Cloud</option>
+                                        <option value="bi-envelope">✉️ Envelope</option>
+                                        <option value="bi-globe">🌐 Globe</option>
+                                        <option value="bi-house">🏠 House</option>
+                                        <option value="bi-music-note">🎵 Music</option>
+                                        <option value="bi-phone">📞 Phone</option>
+                                        <option value="bi-shield-lock">🛡️ Shield</option>
+                                        <option value="bi-sun">☀️ Sun</option>
+                                        <option value="bi-trash">🗑️ Trash</option>
+                                        <option value="bi-wrench">🔧 Wrench</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="labelHeading" class="form-label">Titre</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm" id="labelHeading"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="labelLink" class="form-label">Lien ("En savoir plus")</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="labelLink"
+                                        required placeholder="https://...">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="labelDescription" class="form-label">Description</label>
+                                    <textarea class="form-control shadow-sm" id="labelDescription" rows="3"
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-check-circle me-2"></i>Ajouter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- -------------------------------------------------------------------------- card edit modal ------------------------------------------------------------------- -->
+
+        <div class="modal fade" id="editLabelCardModal" tabindex="-1" aria-labelledby="editLabelModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-warning text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="editLabelModalLabel">
+                            <i class="bi bi-pencil-square me-2"></i>Modifier la carte Label
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="editLabelCardForm">
+                            <input type="hidden" id="label-card-id">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="edit-label-step-number" class="form-label">Numéro d'étape</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm"
+                                        id="edit-label-step-number" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="edit-label-icon" class="form-label">Icône Bootstrap</label>
+                                    <select class="form-select rounded-pill shadow-sm" id="edit-label-icon" required>
+                                        <option value="" disabled selected>Choisir une icône</option>
+                                        <option value="bi-award">🏆 Award</option>
+                                        <option value="bi-building">🏢 Building</option>
+                                        <option value="bi-heart">❤️ Heart</option>
+                                        <option value="bi-star">⭐ Star</option>
+                                        <option value="bi-people">👥 People</option>
+                                        <option value="bi-tree">🌳 Tree</option>
+                                        <option value="bi-gear">⚙️ Gear</option>
+                                        <option value="bi-lightning">⚡ Lightning</option>
+                                        <option value="bi-bicycle">🚲 Bicycle</option>
+                                        <option value="bi-camera">📷 Camera</option>
+                                        <option value="bi-cloud">☁️ Cloud</option>
+                                        <option value="bi-envelope">✉️ Envelope</option>
+                                        <option value="bi-globe">🌐 Globe</option>
+                                        <option value="bi-house">🏠 House</option>
+                                        <option value="bi-music-note">🎵 Music</option>
+                                        <option value="bi-phone">📞 Phone</option>
+                                        <option value="bi-shield-lock">🛡️ Shield</option>
+                                        <option value="bi-sun">☀️ Sun</option>
+                                        <option value="bi-trash">🗑️ Trash</option>
+                                        <option value="bi-wrench">🔧 Wrench</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="edit-label-heading" class="form-label">Titre</label>
+                                    <input type="text" class="form-control rounded-pill shadow-sm"
+                                        id="edit-label-heading" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="edit-label-link" class="form-label">Lien</label>
+                                    <input type="url" class="form-control rounded-pill shadow-sm" id="edit-label-link"
+                                        placeholder="https://...">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="edit-label-description" class="form-label">Description</label>
+                                    <textarea class="form-control shadow-sm" id="edit-label-description" rows="3"
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-warning w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-check-circle me-2"></i>Sauvegarder
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- ----------------------------------------------------------------------------------------footer update------------------------------------------------------------ -->
 
@@ -376,6 +478,9 @@
         <script src="assets/js/footerEdit.js"></script>
         <script src="assets/js/footerLoad.js"></script>
         <script src="assets/js/sweetalert2.all.min.js"></script>
+        <script src="assets/js/label_cards.js"></script>
+
+
     </div>
 </body>
 

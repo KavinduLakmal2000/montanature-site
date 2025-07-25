@@ -11,6 +11,7 @@ const ActivityHead = require("./models/ActivityHead");
 const NatureHead = require("./models/NatureHead");
 const LabelHead = require("./models/LabelHead");
 const NatureCard = require("./models/NatureCard");
+const LabelCard = require("./models/LabelCard");
 
 
 const app = express();
@@ -104,6 +105,18 @@ app.post('/api/save-footer', async (req, res) => {
   } catch (err) {
     console.error('Error saving footer:', err);
     res.status(500).json({ error: 'Failed to save footer data' });
+  }
+});
+
+// ------------------------------------------------------------------ read footer data -------------------------------------------------------------------
+
+app.get('/api/get-footer', async (req, res) => {
+  try {
+    const data = await Footer.findOne({});
+    res.json(data || {});
+  } catch (err) {
+    console.error('Error fetching footer:', err);
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -205,30 +218,6 @@ app.put("/api/nature-heading", async (req, res) => {
   }
 });
 
-// ------------------------------------------------------------------ nature card editing --------------------------------------------------------------
-// CREATE
-app.post('/api/nature-cards', async (req, res) => {
-  try {
-    const newCard = new NatureCard(req.body);
-    const saved = await newCard.save();
-    res.status(201).json({ success: true, card: saved });
-  } catch (err) {
-    console.error("Nature card save error:", err);
-    res.status(500).json({ success: false, error: 'Server error' });
-  }
-});
-
-// READ
-app.get('/api/nature-cards', async (req, res) => {
-  try {
-    const cards = await NatureCard.find();
-    res.json(cards);
-  } catch (err) {
-    console.error("Nature cards fetch error:", err);
-    res.status(500).json({ success: false });
-  }
-});
-
 // -------------------------------------------------------------------- label head edit ----------------------------------------------------------------
 
 // GET label heading
@@ -264,21 +253,8 @@ app.put("/api/label-heading", async (req, res) => {
 });
 
 
-
-// ------------------------------------------------------------------ read footer data -------------------------------------------------------------------
-
-app.get('/api/get-footer', async (req, res) => {
-  try {
-    const data = await Footer.findOne({});
-    res.json(data || {});
-  } catch (err) {
-    console.error('Error fetching footer:', err);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
-
-// ---------------------------------------------------------------- activity section -------------------------------------------------------------------------
-
+// ---------------------------------------------------------------- activity cards section -------------------------------------------------------------------------
+//create
 app.post('/api/cards', async (req, res) => {
   try {
     const newCard = new ActivityCard(req.body);
@@ -290,7 +266,7 @@ app.post('/api/cards', async (req, res) => {
   }
 });
 
-
+// find
 app.get('/api/cards', async (req, res) => {
   try {
     const cards = await ActivityCard.find();
@@ -328,6 +304,124 @@ app.put('/api/cards/:id', async (req, res) => {
     res.status(500).json({ success: false, error: "Server error" });
   }
 });
+
+// ------------------------------------------------------------------ nature card section---------------------------------------------------------------------
+// CREATE
+app.post('/api/nature-cards', async (req, res) => {
+  try {
+    const newCard = new NatureCard(req.body);
+    const saved = await newCard.save();
+    res.status(201).json({ success: true, card: saved });
+  } catch (err) {
+    console.error("Nature card save error:", err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// READ
+app.get('/api/nature-cards', async (req, res) => {
+  try {
+    const cards = await NatureCard.find();
+    res.json(cards);
+  } catch (err) {
+    console.error("Nature cards fetch error:", err);
+    res.status(500).json({ success: false });
+  }
+});
+
+// PUT /api/nature-cards/:id
+app.put('/api/nature-cards/:id', async (req, res) => {
+  try {
+    const updated = await NatureCard.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) return res.status(404).json({ success: false, message: "Card not found" });
+    res.json({ success: true, card: updated });
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// DELETE /api/nature-cards/:id
+app.delete('/api/nature-cards/:id', async (req, res) => {
+  try {
+    const deletedCard = await NatureCard.findByIdAndDelete(req.params.id);
+    if (!deletedCard) {
+      return res.status(404).json({ success: false, message: "Card not found" });
+    }
+    res.json({ success: true, message: "Card deleted successfully" });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
+
+//--------------------------------------------------------------------------------------- Label Card section ---------------------------------------------------
+
+
+// POST /api/labels - Add new label card
+app.post("/api/labels", async (req, res) => {
+  try {
+    const { stepNumber, icon, heading, description, link } = req.body;
+
+    // Basic validation
+    if (!stepNumber || !icon || !heading || !description || !link) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const newCard = new LabelCard({ stepNumber, icon, heading, description, link });
+    const savedCard = await newCard.save();
+
+    res.status(201).json(savedCard);
+  } catch (error) {
+    console.error("Error saving label card:", error);
+    res.status(500).json({ message: "Server error." });
+  }
+});
+
+// load all cards
+
+app.get("/api/labels", async (req, res) => {
+  try {
+    const cards = await LabelCard.find();
+    res.json(cards);
+  } catch (err) {
+    console.error("Error fetching label cards:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+
+// PUT /api/labels/:id
+app.put('/api/labels/:id', async (req, res) => {
+  try {
+    const updated = await LabelCard.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) return res.status(404).json({ success: false, message: "Card not found" });
+    res.json({ success: true, card: updated });
+  } catch (err) {
+    console.error("Update error (label):", err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+
+// delete 
+app.delete("/api/labels/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await LabelCard.findByIdAndDelete(id);
+
+    if (!deleted) {
+      return res.status(404).json({ success: false, message: "Carte introuvable" });
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Erreur lors de la suppression :", err);
+    res.status(500).json({ success: false, message: "Erreur serveur" });
+  }
+});
+
+
 
 
 

@@ -54,8 +54,8 @@ function createCardHTML(card, isAdmin = false) {
               </div>
               ${isAdmin ? `
               <div class="admin-controls mt-2 d-flex gap-2 justify-content-center">
-                <button class="btn btn-sm btn-warning edit-btn" data-id="${card._id}">Edit</button>
-                <button class="btn btn-sm btn-danger delete-btn" data-id="${card._id}">Delete</button>
+                <button class="btn btn-outline-warning rounded-pill btn-sm edit-btn" data-id="${card._id}">Edit</button>
+                <button class="btn btn-outline-danger rounded-pill btn-sm delete-btn" data-id="${card._id}">Delete</button>
               </div>` : ''}
             </div>
           </div>
@@ -89,7 +89,7 @@ document.getElementById("addCardForm").addEventListener("submit", function (e) {
     })
     .then((data) => {
       if (data.success) {
-        Swal.fire("Succès", "Card added!", "success").then(() => location.reload());
+        Swal.fire("Succès", "Carte ajoutée!", "success").then(() => location.reload());
         document.getElementById("addCardForm").reset();
         const cardHTML = createCardHTML(data.card);
         document.getElementById("admin-cards-container").insertAdjacentHTML('afterbegin', cardHTML);
@@ -99,7 +99,7 @@ document.getElementById("addCardForm").addEventListener("submit", function (e) {
       }
     })
     .catch((err) => {
-      console.error("Error adding card:", err);
+      console.error("Erreur lors de l'ajout de la carte:", err);
       Swal.fire("Erreur", "Error occurred: " + err.message, "error");
     });
 });
