@@ -12,7 +12,7 @@ const NatureHead = require("./models/NatureHead");
 const LabelHead = require("./models/LabelHead");
 const NatureCard = require("./models/NatureCard");
 const LabelCard = require("./models/LabelCard");
-
+const ContactInfo = require("./models/ContactInfo");
 
 const app = express();
 const PORT = 3000;
@@ -32,8 +32,8 @@ const AdminSchema = new mongoose.Schema({
 const Admin = mongoose.model('Admin', AdminSchema);
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Session middleware
@@ -420,6 +420,44 @@ app.delete("/api/labels/:id", async (req, res) => {
     res.status(500).json({ success: false, message: "Erreur serveur" });
   }
 });
+
+//---------------------------------------------------------------------------- contact edit -----------------------------------------------
+
+app.put("/api/contact-info", async (req, res) => {
+  try {
+    const { address, emails, hours, receiveEmail, locationLink } = req.body;
+
+    let data = await ContactInfo.findOne();
+
+    if (!data) {
+      data = new ContactInfo({ address, emails, hours, receiveEmail, locationLink });
+    } else {
+      data.address = address;
+      data.emails = emails;
+      data.hours = hours;
+      data.receiveEmail = receiveEmail;
+      data.locationLink = locationLink;
+    }
+
+    await data.save();
+    res.json({ success: true, data });
+  } catch (err) {
+    console.error("Error updating contact info:", err);
+    res.status(500).json({ error: "Failed to update contact info" });
+  }
+});
+
+// GET contact info
+app.get("/api/contact-info", async (req, res) => {
+  try {
+    const data = await ContactInfo.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching contact info:", err);
+    res.status(500).json({ error: "Failed to fetch contact info" });
+  }
+});
+
 
 
 

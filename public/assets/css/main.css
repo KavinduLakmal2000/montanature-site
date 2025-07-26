@@ -1511,7 +1511,7 @@ section,
   background-color: var(--surface-color);
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 }
 

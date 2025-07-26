@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Monta Nature</title>
+
+    <!-- Favicons -->
+    <link href="assets/img/leaf_Logo.png" rel="icon">
+    <link href="assets/img/leaf_Logo.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/customCSS.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <div
+                class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+                <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                    <img src="assets/img/leaf_Logo.png" alt="Logo MontaNature">
+                    <h1 class="sitename">MontaNature</h1>
+                </a>
+
+                <nav id="navmenu" class="navmenu">
+                    <ul>
+                        <li><a href="index.html" class="active">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+
+                        <li class="dropdown">
+                            <a href="#services"><span>Services</span> <i
+                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="activitys.html">Activités d'animation</a></li>
+                                <li><a href="Nature_Management.html">Gestion de la nature</a></li>
+                                <li><a href="Labellisation.html">Service de labellisation</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+
+                <a class="btn-getstarted" href="login.html">Se connecter</a>
+
+            </div>
+        </header>
+
+        <!-- ------------------------------------------------------------------------------------------------- -->
+
+        <section id="hero" class="hero section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 content-col" data-aos="fade-up">
+                        <div class="content">
+
+                            <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="main-heading">
+                                    <h1 id="main-heading">ANIMATION<br>
+                                        GESTION DE LA NATURE</h1>
+                                </div>
+                            </div>
+
+                            <div class="divider"></div>
+
+                            <div class="description">
+                                <p id="description">
+                                    Animation – Concours Cantonal de Fauchage, ateliers de fauchage, découverte des
+                                    plantes comestibles, animations pour enfants, et opérations Clean Riv'.<br>
+                                    Gestion de la nature – Repenser son jardin, inviter la faune, cultiver sa propre
+                                    nourriture, créer des espaces naturels durables et bien plus encore.
+                                </p>
+                            </div>
+
+                            <div class="cta-button">
+                                <a href="#services" class="btn">
+                                    <span>DÉCOUVRIR LES SERVICES</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5" data-aos="zoom-out">
+                        <div class="visual-content">
+                            <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="fluid-shape">
+                                    <img src="assets/img/abstract/contact.png" alt="Abstract Fluid Shape"
+                                        class="fluid-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --------------------------------------------------------------------------------contecnt------------------------------------------------- -->
+
+        <section id="contact" class="contact section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Contact</h2>
+                <div><span>Let's</span> <span class="description-title">Connect</span></div>
+            </div><!-- End Section Title -->
+
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="text-end mb-3">
+                    <button id="edit-contact-btn" class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
+                        data-bs-target="#editContactModal">
+                        <i class="bi bi-pencil-square me-1"></i> Edit Contact Info
+                    </button>
+                </div>
+
+
+                <!-- Contact Info Boxes -->
+                <div class="row gy-4 mb-5">
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="contact-info-box">
+                            <div class="icon-box">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Our Address</h4>
+                                <p id="display-address">1842 Maple Avenue, Portland, Oregon 97204</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="contact-info-box">
+                            <div class="icon-box">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email Address</h4>
+                                <p id="display-emails">info@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="contact-info-box">
+                            <div class="icon-box">
+                                <i class="bi bi-headset"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Hours of Operation</h4>
+                                <p id="display-hours-weekdays">Sunday-Fri: 9 AM - 6 PM</p>
+                                <p id="display-hours-saturday">Saturday: 9 AM - 4 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Google Maps (Full Width) -->
+            <div class="map-section" data-aos="fade-up" data-aos-delay="200">
+              <iframe id="google-map-iframe" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Contact Form Section (Overlapping) -->
+            <div class="container form-container-overlap">
+                <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="col-lg-10">
+                        <div class="contact-form-wrapper">
+                            <h2 class="text-center mb-4">Get in Touch</h2>
+
+                            <form action="/api/send-contact-email" method="post" class="php-email-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-with-icon">
+                                                <i class="bi bi-person"></i>
+                                                <input type="text" class="form-control" name="name"
+                                                    placeholder="First Name" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-with-icon">
+                                                <i class="bi bi-envelope"></i>
+                                                <input type="email" class="form-control" name="email"
+                                                    placeholder="Email Address" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="input-with-icon">
+                                                <i class="bi bi-text-left"></i>
+                                                <input type="text" class="form-control" name="subject"
+                                                    placeholder="Subject" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="input-with-icon">
+                                                <i class="bi bi-chat-dots message-icon"></i>
+                                                <textarea class="form-control" name="message"
+                                                    placeholder="Write Message..." style="height: 180px"
+                                                    required=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="loading">Loading</div>
+                                        <div class="error-message"></div>
+                                        <div class="sent-message">Your message has been sent. Thank you!</div>
+                                    </div>
+
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-submit">SEND MESSAGE</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section><!-- /Contact Section -->
+
+        <!-- ------------------------------------------------------------------------------------------------------------------------------------------ -->
+
+        <footer id="footer" class="footer">
+
+
+            <div class="container footer-top">
+                <div class="row gy-4">
+
+                    <div class="col-lg-5 col-md-12 footer-about">
+                        <a href="index.html" class="logo d-flex align-items-center">
+                            <img src="assets/img/siteLogo.png" alt="MontaNature Logo">
+
+                        </a>
+                        <p>Animation, Gestion de la nature & Labellisation pour un environnement durable.</p>
+                        <div class="social-links d-flex mt-4">
+                            <a id="footer-facebook" href="#" target="_blank"><i class="bi bi-twitter"></i></a>
+                            <a id="footer-instagram" href="#" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a id="footer-linkedin" href="#" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a id="footer-twitter" href="#" target="_blank"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6 footer-links">
+                        <h4>Nos Services</h4>
+                        <ul>
+                            <li>Animation nature</li>
+                            <li>Gestion écologique</li>
+                            <li>Labellisation éthique</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
+                        <h4>Contact</h4>
+                        <p><span id="footer-address"></span></p>
+                        <p><strong>Téléphone:</strong> <span id="footer-telephone"></span></p>
+                        <p><strong>Email:</strong> <span id="footer-email"></span></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container copyright text-center mt-4">
+                <p>© <strong class="sitename">MontaNature</strong>. Tous droits réservés.</p>
+                <div class="credits">
+                    - 2025 -
+                </div>
+            </div>
+
+        </footer>
+
+
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Preloader -->
+        <div id="preloader"></div>
+
+        <!-- ----------------------------------------------------------------------------------------- contact edit model ------------------------------------------------- -->
+
+        <!-- Contact Edit Modal -->
+        <div class="modal fade" id="editContactModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="edit-contact-form">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Contact Information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <input type="hidden" id="contact-id" />
+
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input type="text" id="contact-address" class="form-control" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email Addresses (comma-separated)</label>
+                                <input type="text" id="contact-emails" class="form-control"
+                                    placeholder="e.g. info@example.com, support@example.com" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Weekday Hours</label>
+                                <input type="text" id="contact-weekdays" class="form-control"
+                                    placeholder="e.g. Sunday-Fri: 9 AM - 6 PM" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Saturday Hours</label>
+                                <input type="text" id="contact-saturday" class="form-control"
+                                    placeholder="e.g. Saturday: 9 AM - 4 PM" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Receive Contact Form Emails To</label>
+                                <input type="email" id="contact-receive-email" class="form-control"
+                                    placeholder="e.g. youremail@example.com" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Google Maps Embed Link</label>
+                                <input type="text" id="contact-location-link" class="form-control"
+                                    placeholder="Paste Google Maps iframe src URL" />
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+        <script src="assets/vendor/aos/aos.js"></script>
+        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+        <!-- Main JS File -->
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/footerLoad.js"></script>
+        <script src="assets/js/contact_info.js"></script>
+    </div>
+</body>
+
+</html>
