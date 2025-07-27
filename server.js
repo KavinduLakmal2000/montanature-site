@@ -13,6 +13,9 @@ const LabelHead = require("./models/LabelHead");
 const NatureCard = require("./models/NatureCard");
 const LabelCard = require("./models/LabelCard");
 const ContactInfo = require("./models/ContactInfo");
+const ContactMessage = require("./models/ContactMessage");
+const Heading = require("./models/ContectHead");
+
 
 const app = express();
 const PORT = 3000;
@@ -35,6 +38,9 @@ const Admin = mongoose.model('Admin', AdminSchema);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Session middleware
 app.use(session({
@@ -252,6 +258,43 @@ app.put("/api/label-heading", async (req, res) => {
   }
 });
 
+// ---------------------------------------------------------------------- contact heading ------------------------------------------------------------------------------
+
+// ---------------------- GET heading data ----------------------
+app.get("/api/contact-heading-data", async (req, res) => {
+  try {
+    let heading = await Heading.findOne();
+    if (!heading) {
+      // Create default if none exists
+      heading = await Heading.create({
+        heading: "Bienvenue à MontaNature",
+        description: "Notre mission est de protéger et valoriser la nature."
+      });
+    }
+    res.json(heading);
+  } catch (err) {
+    res.status(500).json({ error: "Erreur lors de la récupération" });
+  }
+});
+
+// ---------------------- UPDATE heading data ----------------------
+app.put("/api/contact-heading-data", async (req, res) => {
+  try {
+    const { id, heading, description } = req.body;
+
+    const updated = await Heading.findByIdAndUpdate(
+      id,
+      { heading, description },
+      { new: true, upsert: true }
+    );
+
+    res.json(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur lors de la mise à jour" });
+  }
+});
+
 
 // ---------------------------------------------------------------- activity cards section -------------------------------------------------------------------------
 //create
@@ -457,6 +500,27 @@ app.get("/api/contact-info", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch contact info" });
   }
 });
+
+// -------------------------------------------------------------------------------- contact messages -------------------------------------------------
+
+// POST Endpoint to receive contact form
+app.post("/api/send-contact-email", async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  if (!name || !email || !subject || !message) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  try {
+    const savedMessage = new ContactMessage({ name, email, subject, message });
+    await savedMessage.save();
+    res.status(200).json({ message: "Message saved successfully" });
+  } catch (err) {
+    console.error("DB save error:", err);
+    res.status(500).json({ error: "Server error saving message" });
+  }
+});
+
 
 
 

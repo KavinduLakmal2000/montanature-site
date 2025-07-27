@@ -38,23 +38,23 @@
             <div
                 class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-                <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <a href="admin_home.html" class="logo d-flex align-items-center me-auto me-xl-0">
                     <img src="assets/img/leaf_Logo.png" alt="Logo MontaNature">
-                    <h1 class="sitename">MontaNature</h1>
+                    <h1 class="sitename">MontaNature administratrice</h1>
                 </a>
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="index.html" class="active">Accueil</a></li>
+                        <li><a href="admin_home.html" class="active">Accueil</a></li>
                         <li><a href="#about">À propos</a></li>
 
                         <li class="dropdown">
                             <a href="#services"><span>Services</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
-                                <li><a href="activitys.html">Activités d'animation</a></li>
-                                <li><a href="Nature_Management.html">Gestion de la nature</a></li>
-                                <li><a href="Labellisation.html">Service de labellisation</a></li>
+                                <li><a href="admin_activitiys.html">Activités d'animation</a></li>
+                                <li><a href="admin_nature.html">Gestion de la nature</a></li>
+                                <li><a href="admin_lebellisation.html">Service de labellisation</a></li>
                             </ul>
                         </li>
 
@@ -63,40 +63,45 @@
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
 
-                <a class="btn-getstarted" href="login.html">Se connecter</a>
+                <a class="btn-getstarted" href="index.html">se déconnecter</a>
 
             </div>
         </header>
 
         <!-- ------------------------------------------------------------------------------------------------- -->
 
-        <section id="hero" class="hero section">
+        <section id="services" class="hero section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 content-col" data-aos="fade-up">
                         <div class="content">
 
-                            <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
-                                <div class="main-heading">
-                                    <h1 id="main-heading">ANIMATION<br>
-                                        GESTION DE LA NATURE</h1>
-                                </div>
+                            <div class="main-heading">
+                                <h1 id="main-heading-display">ACTIVITÉSD'ANIMATION</h1>
                             </div>
 
                             <div class="divider"></div>
 
                             <div class="description">
-                                <p id="description">
-                                    Animation – Concours Cantonal de Fauchage, ateliers de fauchage, découverte des
-                                    plantes comestibles, animations pour enfants, et opérations Clean Riv'.<br>
-                                    Gestion de la nature – Repenser son jardin, inviter la faune, cultiver sa propre
-                                    nourriture, créer des espaces naturels durables et bien plus encore.
+                                <p id="main-description-display">
+                                    Découvrez nos animations nature : concours cantonal de fauchage, ateliers de
+                                    fauchage, prise en main,
+                                    gestuelle, découverte des plantes sauvages comestibles, animations pour enfants, et
+                                    initiatives comme l’Opération Clean Riv’.
                                 </p>
                             </div>
 
+
+                            <div class="text-end mb-3">
+                                <button class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
+                                    data-bs-target="#headingEditModal" id="editHeadingBtn">
+                                    <i class="bi bi-pencil-square me-1"></i> Modifier la section
+                                </button>
+                            </div>
+
                             <div class="cta-button">
-                                <a href="#services" class="btn">
-                                    <span>DÉCOUVRIR LES SERVICES</span>
+                                <a href="#activitys" class="btn">
+                                    <span>VOIR PLUS...</span>
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
@@ -105,11 +110,9 @@
 
                     <div class="col-lg-5" data-aos="zoom-out">
                         <div class="visual-content">
-                            <div class="hero-content d-flex flex-wrap align-items-center justify-content-between">
-                                <div class="fluid-shape">
-                                    <img src="assets/img/abstract/contact.png" alt="Abstract Fluid Shape"
-                                        class="fluid-img">
-                                </div>
+                            <div class="fluid-shape">
+                                <img src="assets/img/abstract/settings.png" alt="Abstract Fluid Shape"
+                                    class="fluid-img">
                             </div>
                         </div>
                     </div>
@@ -124,18 +127,17 @@
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
                 <h2>Contact</h2>
-                <div><span>Let's</span> <span class="description-title">Connect</span></div>
+                <div><span>Entrons en</span> <span class="description-title">Contact</span></div>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="text-end mb-3">
-                    <button id="edit-contact-btn" class="btn btn-warning rounded-pill fw-semibold shadow" data-bs-toggle="modal"
-                        data-bs-target="#editContactModal">
-                        <i class="bi bi-pencil-square me-1"></i> Edit Contact Info
+                    <button id="edit-contact-btn" class="btn btn-warning rounded-pill fw-semibold shadow"
+                        data-bs-toggle="modal" data-bs-target="#editContactModal">
+                        <i class="bi bi-pencil-square me-1"></i> Modifier les informations
                     </button>
                 </div>
-
 
                 <!-- Contact Info Boxes -->
                 <div class="row gy-4 mb-5">
@@ -145,8 +147,8 @@
                                 <i class="bi bi-geo-alt"></i>
                             </div>
                             <div class="info-content">
-                                <h4>Our Address</h4>
-                                <p id="display-address">1842 Maple Avenue, Portland, Oregon 97204</p>
+                                <h4>Adresse</h4>
+                                <p id="display-address">1842 Avenue Maple, Portland, Oregon 97204</p>
                             </div>
                         </div>
                     </div>
@@ -157,7 +159,7 @@
                                 <i class="bi bi-envelope"></i>
                             </div>
                             <div class="info-content">
-                                <h4>Email Address</h4>
+                                <h4>Adresse e-mail</h4>
                                 <p id="display-emails">info@example.com</p>
                             </div>
                         </div>
@@ -169,19 +171,19 @@
                                 <i class="bi bi-headset"></i>
                             </div>
                             <div class="info-content">
-                                <h4>Hours of Operation</h4>
-                                <p id="display-hours-weekdays">Sunday-Fri: 9 AM - 6 PM</p>
-                                <p id="display-hours-saturday">Saturday: 9 AM - 4 PM</p>
+                                <h4>Horaires d'ouverture</h4>
+                                <p id="display-hours-weekdays">Dimanche à Vendredi : 9h00 - 18h00</p>
+                                <p id="display-hours-saturday">Samedi : 9h00 - 16h00</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- Google Maps (Full Width) -->
             <div class="map-section" data-aos="fade-up" data-aos-delay="200">
-              <iframe id="google-map-iframe" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe id="google-map-iframe" width="100%" height="500" style="border:0;" allowfullscreen=""
+                    loading="lazy"></iframe>
             </div>
 
             <!-- Contact Form Section (Overlapping) -->
@@ -189,16 +191,16 @@
                 <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
                     <div class="col-lg-10">
                         <div class="contact-form-wrapper">
-                            <h2 class="text-center mb-4">Get in Touch</h2>
+                            <h2 class="text-center mb-4">Entrer en contact</h2>
 
-                            <form action="/api/send-contact-email" method="post" class="php-email-form">
+                            <form id="messageForm">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-with-icon">
                                                 <i class="bi bi-person"></i>
-                                                <input type="text" class="form-control" name="name"
-                                                    placeholder="First Name" required="">
+                                                <input type="text" class="form-control" name="name" placeholder="Prénom"
+                                                    required="" id="name">
                                             </div>
                                         </div>
                                     </div>
@@ -208,7 +210,7 @@
                                             <div class="input-with-icon">
                                                 <i class="bi bi-envelope"></i>
                                                 <input type="email" class="form-control" name="email"
-                                                    placeholder="Email Address" required="">
+                                                    placeholder="Adresse e-mail" required="" id="email">
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +220,7 @@
                                             <div class="input-with-icon">
                                                 <i class="bi bi-text-left"></i>
                                                 <input type="text" class="form-control" name="subject"
-                                                    placeholder="Subject" required="">
+                                                    placeholder="Sujet" required="" id="subject">
                                             </div>
                                         </div>
                                     </div>
@@ -228,20 +230,15 @@
                                             <div class="input-with-icon">
                                                 <i class="bi bi-chat-dots message-icon"></i>
                                                 <textarea class="form-control" name="message"
-                                                    placeholder="Write Message..." style="height: 180px"
-                                                    required=""></textarea>
+                                                    placeholder="Écrivez votre message..." style="height: 180px"
+                                                    required="" id="message"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-12">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="sent-message">Your message has been sent. Thank you!</div>
-                                    </div>
-
                                     <div class="col-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-submit">SEND MESSAGE</button>
+                                        <button type="submit" class="btn btn-primary btn-submit">ENVOYER LE
+                                            MESSAGE</button>
                                     </div>
                                 </div>
                             </form>
@@ -251,7 +248,8 @@
 
             </div>
 
-        </section><!-- /Contact Section -->
+        </section>
+        <!-- /Contact Section -->
 
         <!-- ------------------------------------------------------------------------------------------------------------------------------------------ -->
 
@@ -291,6 +289,12 @@
                         <p><strong>Email:</strong> <span id="footer-email"></span></p>
                     </div>
 
+                    <div class="mt-3">
+                        <button class="btn btn-success rounded-pill" id="editFooterBtn">
+                            Modifier le pied de page
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
@@ -313,57 +317,90 @@
         <!-- ----------------------------------------------------------------------------------------- contact edit model ------------------------------------------------- -->
 
         <!-- Contact Edit Modal -->
-        <div class="modal fade" id="editContactModal" tabindex="-1">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <form id="edit-contact-form">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit Contact Information</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
+        <div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="editContactModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content rounded-4 shadow-lg border-0">
+                    <div class="modal-header bg-warning text-white rounded-top-4">
+                        <h5 class="modal-title fw-semibold" id="editContactModalLabel">
+                            <i class="bi bi-geo-alt-fill me-2"></i>Modifier les informations de contact
+                        </h5>
 
-                        <div class="modal-body">
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="edit-contact-form">
                             <input type="hidden" id="contact-id" />
 
-                            <div class="mb-3">
-                                <label class="form-label">Address</label>
-                                <input type="text" id="contact-address" class="form-control" />
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="contact-address" class="form-label">Adresse</label>
+                                    <input type="text" id="contact-address" class="form-control"
+                                        placeholder="e.g. 123 Rue Exemple, Paris" />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="contact-emails" class="form-label">Adresses e-mail (séparées par des
+                                        virgules)</label>
+                                    <input type="text" id="contact-emails" class="form-control"
+                                        placeholder="ex: info@exemple.fr, support@exemple.fr" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="contact-weekdays" class="form-label">Horaires de semaine</label>
+                                    <input type="text" id="contact-weekdays" class="form-control"
+                                        placeholder="ex: Lundi-Vendredi: 9h - 18h" />
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="contact-saturday" class="form-label">Horaires du samedi</label>
+                                    <input type="text" id="contact-saturday" class="form-control"
+                                        placeholder="ex: Samedi: 9h - 14h" />
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label for="contact-location-link" class="form-label">Lien Google Maps</label>
+                                    <input type="text" id="contact-location-link" class="form-control"
+                                        placeholder="Collez ici l’URL du lien iframe de Google Maps" />
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Email Addresses (comma-separated)</label>
-                                <input type="text" id="contact-emails" class="form-control"
-                                    placeholder="e.g. info@example.com, support@example.com" />
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-warning w-100 rounded-pill fw-semibold shadow">
+                                    <i class="bi bi-check-circle me-2"></i>Enregistrer les modifications
+                                </button>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Weekday Hours</label>
-                                <input type="text" id="contact-weekdays" class="form-control"
-                                    placeholder="e.g. Sunday-Fri: 9 AM - 6 PM" />
-                            </div>
+        <!-- -------------------------------------------------------------------------------- head edit model- ---------------------------------------------------- -->
 
-                            <div class="mb-3">
-                                <label class="form-label">Saturday Hours</label>
-                                <input type="text" id="contact-saturday" class="form-control"
-                                    placeholder="e.g. Saturday: 9 AM - 4 PM" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Receive Contact Form Emails To</label>
-                                <input type="email" id="contact-receive-email" class="form-control"
-                                    placeholder="e.g. youremail@example.com" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Google Maps Embed Link</label>
-                                <input type="text" id="contact-location-link" class="form-control"
-                                    placeholder="Paste Google Maps iframe src URL" />
-                            </div>
+        <div class="modal fade" id="headingEditModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content p-3">
+                    <form id="headingEditForm">
+                        <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title">Modifier le texte principal</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                         </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Titre Principal</label>
+                                <textarea id="editMainHeading" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea id="editDescription" class="form-control" rows="4"></textarea>
+                            </div>
 
+                            <p class="text-muted mt-2" style="font-size: 0.875rem;">
+                                💡 Pour ajouter un saut de ligne, utilisez <code>&lt;br&gt;</code> entre les phrases.
+                            </p>
+                        </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Save Changes</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button class="btn btn-success" type="submit">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -384,7 +421,9 @@
         <!-- Main JS File -->
         <script src="assets/js/main.js"></script>
         <script src="assets/js/footerLoad.js"></script>
+        <script src="assets/js/footerEdit.js"></script>
         <script src="assets/js/contact_info.js"></script>
+        <script src="assets/js/sweetalert2.all.min.js"></script>
     </div>
 </body>
 
