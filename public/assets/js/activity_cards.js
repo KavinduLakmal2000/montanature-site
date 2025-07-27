@@ -50,7 +50,9 @@ function createCardHTML(card, isAdmin = false) {
                 <a href="${card.lightbox}" class="glightbox" data-glightbox="title: ${card.title}; description: ${card.description};">
                   <i class="bi bi-arrows-angle-expand"></i>
                 </a>
-                <a href="#"><i class="bi bi-arrow-right"></i></a>
+                  <a href="${isAdmin ? 'admin_contact.html' : 'contact.html'}">
+                    <i class="bi bi-arrow-right"></i>
+                  </a>
               </div>
               ${isAdmin ? `
               <div class="admin-controls mt-2 d-flex gap-2 justify-content-center">

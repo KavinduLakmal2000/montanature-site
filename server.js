@@ -468,17 +468,17 @@ app.delete("/api/labels/:id", async (req, res) => {
 
 app.put("/api/contact-info", async (req, res) => {
   try {
-    const { address, emails, hours, receiveEmail, locationLink } = req.body;
+    const { address, emails, hours, locationLink } = req.body;
 
     let data = await ContactInfo.findOne();
 
     if (!data) {
-      data = new ContactInfo({ address, emails, hours, receiveEmail, locationLink });
+      data = new ContactInfo({ address, emails, hours, locationLink });
     } else {
       data.address = address;
       data.emails = emails;
       data.hours = hours;
-      data.receiveEmail = receiveEmail;
+      data.receiveEmail = "#";
       data.locationLink = locationLink;
     }
 
@@ -521,7 +521,31 @@ app.post("/api/send-contact-email", async (req, res) => {
   }
 });
 
+//-------------------------------------------------------------------------- inbox section -------------------------------------------------
 
+// GET all messages
+app.get("/api/contact-messages", async (req, res) => {
+  try {
+    const messages = await ContactMessage.find().sort({ createdAt: -1 });
+    res.json(messages);
+  } catch (err) {
+    console.error("DB read error:", err);
+    res.status(500).json({ error: "Error fetching messages" });
+  }
+});
+
+
+// DELETE message
+app.delete("/api/contact-messages/:id", async (req, res) => {
+  try {
+    const deleted = await ContactMessage.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ error: "Message not found" });
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ error: "Error deleting message" });
+  }
+});
 
 
 
