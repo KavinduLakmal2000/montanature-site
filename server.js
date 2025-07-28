@@ -15,17 +15,25 @@ const LabelCard = require("./models/LabelCard");
 const ContactInfo = require("./models/ContactInfo");
 const ContactMessage = require("./models/ContactMessage");
 const Heading = require("./models/ContectHead");
+const env = require("./models/env");
 
 
 const app = express();
 const PORT = 3000;
 
+let dbConnected = false;
+
 // MongoDB connection
 mongoose.connect('mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/montanature', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}).then(() => console.log("Connected to MongoDB"))
-  .catch(err => console.error("MongoDB error", err));
+}).then(() => {
+  dbConnected = true;
+  console.log("Connected to MongoDB");
+}).catch(err => {
+  dbConnected = false;
+  console.error("MongoDB error", err);
+});
 
 const AdminSchema = new mongoose.Schema({
   email: String,
@@ -37,6 +45,34 @@ const Admin = mongoose.model('Admin', AdminSchema);
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.get('/', async (req, res) => {
+
+  if (!dbConnected) {
+    return res.redirect('/DBnotfound.html');
+  }
+
+  try {
+    const data = await env.findOne({}, 'siteValue');
+
+    if (!data || data.siteValue === "Lucky@2000627") {
+      return res.redirect('/notfound.html');
+    }
+
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } catch (err) {
+    console.error("Error checking siteValue on /:", err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/login.html'));
+});
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
@@ -54,14 +90,36 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
 }));
 
-// Serve index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// ------------------------------------------------------------------------------ admin enable -----------------------------------------------------------------
+
+app.put("/api/control", async (req, res) => {
+  try {
+    const { siteValue, eggValue } = req.body;
+
+    const updated = await env.findOneAndUpdate(
+      {},
+      { siteValue, eggValue },
+      { new: true, upsert: true }
+    );
+
+    res.json(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Erreur lors de la mise à jour" });
+  }
 });
 
-app.get('/login.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/login.html'));
+
+app.get("/api/control", async (req, res) => {
+  try {
+    const data = await env.findOne();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching label heading:", err);
+    res.status(500).json({ error: "Failed to fetch label heading" });
+  }
 });
+
 
 // ----------------------------------------------------------------------------------------- login section ---------------------------------------------------------
 
@@ -548,9 +606,5 @@ app.delete("/api/contact-messages/:id", async (req, res) => {
 });
 
 
-
-
-
-// TODO: Add routes for CRUD and login
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

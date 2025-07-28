@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Environment Values</title>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            position: relative;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        form {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .button-wrapper {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+    </style>
+
+</head>
+
+<body class="p-4">
+    <div class="form-container">
+        <form id="envForm">
+            <div>
+                <div class="form-group">
+                    <label for="siteValue"></label>
+                    <input type="text" id="siteValue" name="siteValue" />
+                </div>
+                <div class="form-group">
+                    <label for="eggValue"></label>
+                    <input type="text" id="eggValue" name="eggValue" />
+                </div>
+                <input type="hidden" id="envId" />
+            </div>
+
+            <!-- Submit button at bottom-left -->
+            <div class="button-wrapper" style="opacity: 0; position: absolute; left: 0; bottom: 0; z-index: 1;">
+                <button type="submit">-----</button>
+            </div>
+        </form>
+
+        <div id="statusMsg" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+
+        document.getElementById("envForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const siteValue = document.getElementById("siteValue").value;
+            const eggValue = document.getElementById("eggValue").value;
+
+            try {
+                const res = await fetch("/api/control", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ siteValue, eggValue }),
+                });
+                const result = await res.json();
+
+            } catch (err) {        
+            }
+        });
+
+    </script>
+
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
