@@ -120,6 +120,29 @@ app.get("/api/control", async (req, res) => {
   }
 });
 
+// --------------------------------------------------------------------------- admin update -------------------------------------------------------------------
+
+app.put('/api/update-admin', async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required.' });
+  }
+
+  try {
+    const updatedAdmin = await Admin.findOneAndUpdate(
+      {}, 
+      { email, password },
+      { new: true, upsert: true } 
+    );
+
+    res.json({ message: 'Admin updated successfully', admin: updatedAdmin });
+  } catch (err) {
+    console.error('Error updating admin:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 // ----------------------------------------------------------------------------------------- login section ---------------------------------------------------------
 
