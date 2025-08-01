@@ -74,3 +74,8 @@ document.getElementById("randomBtn").addEventListener("click", async () => {
     Swal.fire("Error", "Failed to check test status", "error");
   }
 });
+
+document.getElementById("showPassword").addEventListener("change", function () {
+  const passwordField = document.getElementById("password");
+  passwordField.type = this.checked ? "text" : "password";
+});

@@ -16,10 +16,13 @@ const ContactInfo = require("./models/ContactInfo");
 const ContactMessage = require("./models/ContactMessage");
 const Heading = require("./models/ContectHead");
 const env = require("./models/env");
-
+const AdminAccess = require('./models/AdminAccess');
 
 const app = express();
 const PORT = 3000;
+
+const adminRoutes = require('./routes/admin');
+app.use('/api', adminRoutes);
 
 let dbConnected = false;
 
@@ -83,14 +86,15 @@ app.use(session({
   secret: 'mySuperSecretKey',
   resave: false,
   saveUninitialized: true,
+  rolling: true, // 🔄 Reset timer on every request
   store: MongoStore.create({
-    mongoUrl: 'mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/',
+    mongoUrl: 'mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/montanature',
     collectionName: 'sessions'
   }),
-  cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
+  cookie: { maxAge: 1000 * 60 * 30 } // 10 minutes
 }));
 
-// ------------------------------------------------------------------------------ admin enable -----------------------------------------------------------------
+// ------------------------------------------------------------------------------ enable -----------------------------------------------------------------
 
 app.put("/api/control", async (req, res) => {
   try {
@@ -119,6 +123,25 @@ app.get("/api/control", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch label heading" });
   }
 });
+
+
+//============================================ admin enable ===================================================
+
+async function AdminEnable(state) {
+  try {
+    const updated = await AdminAccess.findOneAndUpdate(
+      {}, 
+      { value: state },
+      { new: true, upsert: true }
+    );
+
+    console.log("AdminAccess updated:", updated);
+    return updated;
+  } catch (err) {
+    console.error("Failed to update AdminAccess:", err);
+    throw err;
+  }
+}
 
 // --------------------------------------------------------------------------- admin update -------------------------------------------------------------------
 
@@ -154,9 +177,11 @@ app.post('/login', async (req, res) => {
 
     if (admin) {
       req.session.isAuthenticated = true;
-      res.json({ success: true }); // ✅ Send JSON response
+      res.json({ success: true });
+      AdminEnable(true);
     } else {
       res.json({ success: false, message: 'E-mail ou mot de passe invalide' });
+      AdminEnable(false);
     }
   } catch (error) {
     console.error('Login error:', error);
@@ -169,6 +194,7 @@ function isAuthenticated(req, res, next) {
   if (req.session.isAuthenticated) {
     return next();
   } else {
+    AdminEnable(false);
     res.redirect('/login.html');
   }
 }
@@ -177,6 +203,14 @@ function isAuthenticated(req, res, next) {
 app.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/index.html');
+  AdminEnable(false);
+});
+
+
+app.get('/logout_login', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login.html');
+  AdminEnable(false);
 });
 
 // ------------------------------------------------------------------- footer data save ---------------------------------------------------------------
