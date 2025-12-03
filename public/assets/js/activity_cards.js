@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Isotope init
       imagesLoaded(container, function () {
         const iso = new Isotope(container, {
-          itemSelector: '.isotope-item',
+          itemSelector: '.isotope-item', 
           layoutMode: 'masonry'
         });
 

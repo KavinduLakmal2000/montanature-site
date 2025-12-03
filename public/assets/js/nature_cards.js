@@ -23,9 +23,12 @@ function createNatureCardHTML(card, isAdmin = false) {
           <h4>${card.title}</h4>
           <span>${card.subheading}</span>
           <p>${card.description}</p>
-          <a href="${card.link || '#'}" class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
+
+        <a href="${isAdmin ? 'admin_contact.html' : 'contact.html'}" 
+        class="card-action d-flex align-items-center justify-content-center rounded-circle position-absolute end-0 bottom-0 me-2 mb-2">
+        <i class="bi bi-arrow-up-right"></i>
+        </a>
+
 
           ${isAdmin ? `
           <!-- Admin Buttons -->
@@ -49,7 +52,7 @@ document.getElementById("addNatureCardForm").addEventListener("submit", function
         icon: document.getElementById("natureCardIcon").value,
         subheading: document.getElementById("natureCardSubheading").value,
         description: document.getElementById("natureCardDescription").value,
-        link: document.getElementById("natureCardLink").value || "#"
+        link: "#"
     };
 
     fetch("/api/nature-cards", {
@@ -90,7 +93,6 @@ document.addEventListener("click", function (e) {
                 document.getElementById("editNatureCardIcon").value = card.icon;
                 document.getElementById("editNatureCardSubheading").value = card.subheading;
                 document.getElementById("editNatureCardDescription").value = card.description;
-                document.getElementById("editNatureCardLink").value = card.link;
 
                 const modal = new bootstrap.Modal(document.getElementById("editNatureCardModal"));
                 modal.show();
@@ -109,7 +111,7 @@ document.getElementById("editNatureCardForm").addEventListener("submit", functio
         icon: document.getElementById("editNatureCardIcon").value,
         subheading: document.getElementById("editNatureCardSubheading").value,
         description: document.getElementById("editNatureCardDescription").value,
-        link: document.getElementById("editNatureCardLink").value || "#"
+        link: "#"
     };
 
     fetch(`/api/nature-cards/${cardId}`, {

@@ -30,6 +30,9 @@
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
     <link href="assets/css/customCSS.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 
 <body>
@@ -84,7 +87,7 @@
 
                             <div class="description">
                                 <p id="main-description-display">
-                                   chargement...
+                                    chargement...
                                 </p>
                             </div>
 
@@ -313,6 +316,26 @@
         <div id="preloader"></div>
 
         <!-- ----------------------------------------------------------------------------------------- contact edit model ------------------------------------------------- -->
+        <!-- Map Picker Modal -->
+        <div class="modal fade" id="mapPickerModal" tabindex="-1" aria-labelledby="mapPickerLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content rounded-4">
+                    <div class="modal-header bg-primary text-white rounded-top-4">
+                        <h5 class="modal-title" id="mapPickerLabel">Sélectionner l'emplacement</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body p-0">
+                        <div id="leafletMap" style="height: 450px; width: 100%;"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="saveLocationBtn">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Contact Edit Modal -->
         <div class="modal fade" id="editContactModal" tabindex="-1" aria-labelledby="editContactModalLabel"
@@ -356,9 +379,15 @@
                                 </div>
 
                                 <div class="col-md-12">
-                                    <label for="contact-location-link" class="form-label">Lien Google Maps</label>
+                                    <label class="form-label">Emplacement sur la carte</label>
+
+                                    <!-- This will store the coordinates -->
                                     <input type="text" id="contact-location-link" class="form-control"
-                                        placeholder="Collez ici l’URL du lien iframe de Google Maps" />
+                                        placeholder="Lat, Lng" readonly />
+
+                                    <button type="button" class="btn btn-outline-primary w-100 mt-2" id="openMapBtn">
+                                        Choisir sur la carte
+                                    </button>
                                 </div>
                             </div>
 

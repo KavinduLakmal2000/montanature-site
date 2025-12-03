@@ -32,8 +32,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (hoursSaturdayEl) hoursSaturdayEl.textContent = contactData.hours?.saturday || "N/A";
 
     if (mapIframe && contactData.locationLink) {
-      mapIframe.src = contactData.locationLink;
+      const [lat, lng] = contactData.locationLink.split(",").map(s => s.trim());
+      mapIframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.005},${lat - 0.005},${+lng + 0.005},${+lat + 0.005}&layer=mapnik&marker=${lat},${lng}`;
     }
+
+
 
   } catch (err) {
     console.error("Error loading contact data:", err);
@@ -163,8 +166,67 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     }
   });
+});
 
+let map;
+let marker = null;
+let selectedLatLng = null;
 
+// Open map modal
+document.getElementById("openMapBtn").addEventListener("click", () => {
+  const contactModal = bootstrap.Modal.getInstance(document.getElementById("editContactModal"));
+  contactModal.hide();
 
+  // Open map modal after short delay
+  setTimeout(() => {
+    const mapModal = new bootstrap.Modal(document.getElementById("mapPickerModal"));
+    mapModal.show();
+
+    setTimeout(() => {
+      if (!map) initializeMap();
+      setTimeout(() => map.invalidateSize(), 200);
+    }, 200);
+  }, 300);
+});
+
+function initializeMap() {
+  map = L.map('leafletMap').setView([48.8566, 2.3522], 13); // Default Paris
+
+  // OpenStreetMap tiles (FREE)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  // Click event to set marker
+  map.on("click", function (e) {
+    selectedLatLng = e.latlng;
+
+    if (marker) {
+      marker.setLatLng(e.latlng);
+    } else {
+      marker = L.marker(e.latlng).addTo(map);
+    }
+  });
+}
+
+// Save location to input
+document.getElementById("saveLocationBtn").addEventListener("click", () => {
+  if (!selectedLatLng) {
+    alert("Veuillez sélectionner un emplacement sur la carte.");
+    return;
+  }
+
+  const value = `${selectedLatLng.lat.toFixed(6)}, ${selectedLatLng.lng.toFixed(6)}`;
+  document.getElementById("contact-location-link").value = value;
+
+  // Close map picker
+  const mapModal = bootstrap.Modal.getInstance(document.getElementById("mapPickerModal"));
+  mapModal.hide();
+
+  // Reopen contact modal
+  setTimeout(() => {
+    const contactModal = new bootstrap.Modal(document.getElementById("editContactModal"));
+    contactModal.show();
+  }, 300);
 });
 

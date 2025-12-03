@@ -31,9 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const icon = document.getElementById("labelIcon").value.trim();
             const heading = document.getElementById("labelHeading").value.trim();
             const description = document.getElementById("labelDescription").value.trim();
-            const link = document.getElementById("labelLink").value.trim();
 
-            const cardData = { stepNumber, icon, heading, description, link };
+            const cardData = { stepNumber, icon, heading, description};
 
             try {
                 const res = await fetch("/api/labels", {
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="step-number">${card.stepNumber}</span>
                     <h3>${card.heading}</h3>
                     <p>${card.description}</p>
-                    <a href="${card.link}" class="btn btn-outline-primary mt-2" target="_blank">En savoir plus</a>
+                    <a href="${isAdmin ? 'admin_contact.html' : 'contact.html'}" class="btn btn-outline-primary mt-2">Contactez-nous</a>
                 </div>
             </div>
             ${isAdmin ? `
@@ -109,14 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const description = cardEl.querySelector("p").textContent;
             const icon = cardEl.querySelector("i").classList[1]; // assumes: bi bi-heart
             const stepNumber = cardEl.querySelector(".step-number").textContent;
-            const link = cardEl.querySelector("a").href;
 
             document.getElementById("label-card-id").value = id;
             document.getElementById("edit-label-step-number").value = stepNumber;
             document.getElementById("edit-label-heading").value = heading;
             document.getElementById("edit-label-description").value = description;
             document.getElementById("edit-label-icon").value = icon;
-            document.getElementById("edit-label-link").value = link;
+           
 
             new bootstrap.Modal(document.getElementById("editLabelCardModal")).show();
         }
@@ -130,8 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             stepNumber: document.getElementById("edit-label-step-number").value,
             heading: document.getElementById("edit-label-heading").value,
             description: document.getElementById("edit-label-description").value,
-            icon: document.getElementById("edit-label-icon").value,
-            link: document.getElementById("edit-label-link").value
+            icon: document.getElementById("edit-label-icon").value
         };
 
         fetch(`/api/labels/${id}`, {

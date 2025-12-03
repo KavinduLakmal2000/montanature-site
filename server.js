@@ -26,8 +26,8 @@ app.use('/api', adminRoutes);
 
 let dbConnected = false;
 
-// MongoDB connection
-mongoose.connect('mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/montanature', {
+// MongoDB connection pass - lEJXh9D8h42YyHui
+mongoose.connect('mongodb+srv://admin:lEJXh9D8h42YyHui@montanature.rrlezdd.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
@@ -88,7 +88,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true, // 🔄 Reset timer on every request
   store: MongoStore.create({
-    mongoUrl: 'mongodb+srv://montanature:1234@clustermonta.yhnismd.mongodb.net/montanature',
+    mongoUrl: 'mongodb+srv://admin:lEJXh9D8h42YyHui@montanature.rrlezdd.mongodb.net/',
     collectionName: 'sessions'
   }),
   cookie: { maxAge: 1000 * 60 * 30 } // 10 minutes
@@ -519,10 +519,11 @@ app.delete('/api/nature-cards/:id', async (req, res) => {
 // POST /api/labels - Add new label card
 app.post("/api/labels", async (req, res) => {
   try {
-    const { stepNumber, icon, heading, description, link } = req.body;
+    const { stepNumber, icon, heading, description } = req.body;
+    const link = "#";
 
     // Basic validation
-    if (!stepNumber || !icon || !heading || !description || !link) {
+    if (!stepNumber || !icon || !heading || !description) {
       return res.status(400).json({ message: "All fields are required." });
     }
 

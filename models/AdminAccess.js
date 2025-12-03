@@ -5,3 +5,4 @@ const AdminAccessSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('AdminAccess', AdminAccessSchema, 'AdminAccess');
+ 
