@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -26,7 +27,7 @@ app.use('/api', adminRoutes);
 
 let dbConnected = false;
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     dbConnected = true;
     console.log("Connected to MongoDB");
@@ -86,7 +87,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true, // 🔄 Reset timer on every request
   store: MongoStore.create({
-    mongoUrl: 'mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature?retryWrites=true&w=majority',
+    mongoUrl: process.env.MONGO_URI,
     collectionName: 'sessions'
   }),
   cookie: { maxAge: 1000 * 60 * 30 } // 10 minutes
