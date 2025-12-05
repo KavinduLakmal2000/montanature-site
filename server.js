@@ -19,7 +19,7 @@ const env = require("./models/env");
 const AdminAccess = require('./models/AdminAccess');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const adminRoutes = require('./routes/admin');
 app.use('/api', adminRoutes);
