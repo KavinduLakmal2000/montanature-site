@@ -10,10 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
         container.insertAdjacentHTML('beforeend', cardHTML);
       });
 
+      GLightbox({
+        selector: '.glightbox'
+      });
+
       // Isotope init
       imagesLoaded(container, function () {
         const iso = new Isotope(container, {
-          itemSelector: '.isotope-item', 
+          itemSelector: '.isotope-item',
           layoutMode: 'masonry'
         });
 
@@ -47,9 +51,16 @@ function createCardHTML(card, isAdmin = false) {
               <div class="entry-meta">${card.category}</div>
               <h3 class="entry-title">${card.title}</h3>
               <div class="entry-links">
-                <a href="${card.lightbox}" class="glightbox" data-glightbox="title: ${card.title}; description: ${card.description};">
+               <a 
+                  href="${card.lightbox}" 
+                  class="glightbox"
+                  data-gallery="portfolio-gallery"
+                  data-title="${card.title}"
+                  data-description="${card.description.replace(/"/g, '&quot;')}"
+                >
                   <i class="bi bi-arrows-angle-expand"></i>
                 </a>
+
                   <a href="${isAdmin ? 'admin_contact.html' : 'contact.html'}">
                     <i class="bi bi-arrow-right"></i>
                   </a>
@@ -64,7 +75,7 @@ function createCardHTML(card, isAdmin = false) {
         </figure>
       </article>
     </div>
-  `; 
+  `;
 }
 
 

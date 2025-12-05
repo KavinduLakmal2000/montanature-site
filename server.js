@@ -26,17 +26,15 @@ app.use('/api', adminRoutes);
 
 let dbConnected = false;
 
-// MongoDB connection pass - lEJXh9D8h42YyHui
-mongoose.connect('mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  dbConnected = true;
-  console.log("Connected to MongoDB");
-}).catch(err => {
-  dbConnected = false;
-  console.error("MongoDB error", err);
-});
+mongoose.connect('mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature')
+  .then(() => {
+    dbConnected = true;
+    console.log("Connected to MongoDB");
+  })
+  .catch(err => {
+    dbConnected = false;
+    console.error("MongoDB error", err);
+  });
 
 const AdminSchema = new mongoose.Schema({
   email: String,
