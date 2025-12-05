@@ -27,7 +27,7 @@ app.use('/api', adminRoutes);
 let dbConnected = false;
 
 // MongoDB connection pass - lEJXh9D8h42YyHui
-mongoose.connect('mongodb+srv://admin:lEJXh9D8h42YyHui@montanature.rrlezdd.mongodb.net/', {
+mongoose.connect('mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
@@ -88,7 +88,7 @@ app.use(session({
   saveUninitialized: true,
   rolling: true, // 🔄 Reset timer on every request
   store: MongoStore.create({
-    mongoUrl: 'mongodb+srv://admin:lEJXh9D8h42YyHui@montanature.rrlezdd.mongodb.net/',
+    mongoUrl: 'mongodb+srv://admin:admin@cluster0.apwokid.mongodb.net/montanature?retryWrites=true&w=majority',
     collectionName: 'sessions'
   }),
   cookie: { maxAge: 1000 * 60 * 30 } // 10 minutes

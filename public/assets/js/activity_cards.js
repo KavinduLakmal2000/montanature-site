@@ -64,7 +64,7 @@ function createCardHTML(card, isAdmin = false) {
         </figure>
       </article>
     </div>
-  `;
+  `; 
 }
 
 
